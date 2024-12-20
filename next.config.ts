@@ -1,7 +1,19 @@
-import type { NextConfig } from "next";
+import type { NextConfig } from 'next'
 
 const nextConfig: NextConfig = {
-  /* config options here */
-};
+	reactStrictMode: true, // Строгий режим React
 
-export default nextConfig;
+	poweredByHeader: false, // Нельзя посмотреть на чем написан сайт
+
+  // Подмена ссылки на сервер для картинок
+	async rewrites() {
+		return [
+			{
+				source: '/uploads/:path*',
+				destination: `${process.env.SERVER_URL}/uploads/:path*`
+			}
+		]
+	}
+}
+
+export default nextConfig
