@@ -1,6 +1,6 @@
-import type { ISidebarItem } from '../sidebar.types'
+import type { ISidebarItem } from '../../sidebar.types'
 
-import { MenuItem } from './MenuItem'
+import { MenuItem } from './menuItem/MenuItem'
 
 interface Props {
 	title?: string
@@ -10,7 +10,7 @@ interface Props {
 export function SidebarMenu({ menu, title }: Props) {
 	return (
 		<nav>
-			{title && <div>{title}</div>}
+			{title && <div className='opacity-45 uppercase font-medium text-sm mb-3'>{title}</div>}
 			<ul>
 				{menu.map((menuItem, index) => {
 					return (

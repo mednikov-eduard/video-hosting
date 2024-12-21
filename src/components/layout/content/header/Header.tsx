@@ -1,3 +1,3 @@
 export function Header() {
-	return <header>header</header>
+	return <header className='p-layout'>header</header>
 }
