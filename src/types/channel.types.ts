@@ -1,5 +1,5 @@
-import type { IUser } from './user.type'
-import type { IVideo } from './video.type'
+import type { IUser } from './user.types'
+import type { IVideo } from './video.types'
 
 export interface IChannel {
 	id: string

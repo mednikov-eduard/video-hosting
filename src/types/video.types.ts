@@ -1,4 +1,4 @@
-import type { IChannel } from './channel.type'
+import type { IChannel } from './channel.types'
 
 export interface IVideo {
 	id: string
