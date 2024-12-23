@@ -1,5 +1,5 @@
 import { SidebarHeader } from './header/SidebarHeader'
-import { SidebarMenu } from './menus/sidebarMenu/SidebarMenu'
+import { SidebarMenu } from './menus/sidebar-menu/SidebarMenu'
 import { SidebarSubscription } from './menus/subscriptions/SidebarSubscription'
 import { MORE_SIDEBAR_DATA, SIDEBAR_DATA } from './sidebar.data'
 

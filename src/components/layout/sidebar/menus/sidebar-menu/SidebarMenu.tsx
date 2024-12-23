@@ -3,7 +3,7 @@ import { match } from 'path-to-regexp'
 
 import type { ISidebarItem } from '../../sidebar.types'
 
-import { MenuItem } from './menuItem/MenuItem'
+import { MenuItem } from './menu-item/MenuItem'
 
 interface Props {
 	title?: string
