@@ -20,7 +20,7 @@ export function Explore() {
 		<section>
 			<SectionTitle Icon={Compass}>Explore</SectionTitle>
 			<div className='grid grid-cols-6 gap-6'>
-				{true ? (
+				{isLoading ? (
 					<SkeletonLoader
 						count={6}
 						classNames='h-40 rounded-md'
