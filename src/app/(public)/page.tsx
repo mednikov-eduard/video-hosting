@@ -36,7 +36,7 @@ export default async function Home() {
 			<section className='mb-10'>
 				<SectionTitle Icon={Flame}>Trending</SectionTitle>
 				<div className='grid grid-cols-6 gap-6'>
-					{trendingVideos?.length &&
+					{!!trendingVideos?.length &&
 						trendingVideos.map((video: IVideo) => (
 							<VideoItem
 								key={video.id}

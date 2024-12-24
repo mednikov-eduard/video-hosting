@@ -19,6 +19,19 @@ class VideoService {
 	getExploreVideos() {
 		return axios.get('http://localhost:4200/api/videos/explore')
 	}
+
+	getAllVideos(searchTerm?: string | null) {
+		return axios.get(
+			'http://localhost:4200/api/videos',
+			searchTerm
+				? {
+						params: {
+							searchTerm
+						}
+					}
+				: {}
+		)
+	}
 }
 
 export const videoService = new VideoService()

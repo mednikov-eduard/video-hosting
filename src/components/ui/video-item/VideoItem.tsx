@@ -22,7 +22,7 @@ export function VideoItem({ video, Icon }: Props) {
 					<Image
 						src={video.thumbnailUrl}
 						width={280}
-						height={160}
+						height={140}
 						alt={video.title}
 						className='rounded-md'
 					/>
@@ -70,12 +70,14 @@ export function VideoItem({ video, Icon }: Props) {
 					<span className='text-gray-400 text-sm hover:text-gray-100 transition-all'>
 						{video.channel.user.name}
 					</span>
-					<span>
-						<BadgeCheck
-							className='text-green-500'
-							size={15}
-						/>
-					</span>
+					{video.channel.isVerified && (
+						<span>
+							<BadgeCheck
+								className='text-green-500'
+								size={15}
+							/>
+						</span>
+					)}
 				</Link>
 			</div>
 		</div>
