@@ -1,3 +1,4 @@
+// цвета для стилей
 export const COLORS = {
 	primary: '#ef4444',
 	bg: '#191B28',

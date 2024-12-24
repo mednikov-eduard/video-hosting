@@ -1,3 +1,6 @@
+/**
+ * пути для публичных страниц
+ */
 class PublicPage {
 	HOME = '/'
 	TRENDING = '/trending'
@@ -13,13 +16,24 @@ class PublicPage {
 	SETTINGS = '/settings'
 	FEEDBACK = '/feedback'
 
-	VIDEO(path:string){
+	/**
+	 * путь к странице видео
+	 * @param path путь к странице
+	 * @returns путь к странице видео
+	 */
+	VIDEO(path: string) {
 		return `/v/${path}`
 	}
 
-	CHANNEL(path:string){
+	/**
+	 * путь к странице канала
+	 * @param path путь к странице
+	 * @returns путь к странице канала
+	 */
+	CHANNEL(path: string) {
 		return `/c/${path}`
 	}
 }
 
+// экспорт экземпляра класса
 export const PAGE = new PublicPage()

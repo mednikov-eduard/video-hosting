@@ -1,49 +1,21 @@
-@keyframes hideSidebar {
-	0% {
-		transform: translateX(0);
-		width: var(--sidebar-width);
-	}
+.hidedSidebar>aside {
+	width: 3.8rem;
+	flex-grow: 0;
 
-	100% {
-		@apply w-[3.9rem];
-	}
-
-}
-
-@keyframes showSidebar {
-	0% {
-		@apply w-[3.7rem];
-	}
-
-	100% {
-		transform: translateX(0);
-		width: var(--sidebar-width);
+	>nav>div:first-child {
+		display: none;
 	}
 
 }
-
 
 .hidedSidebar {
-	>aside {
-		animation: hideSidebar 0.35s forwards;
-		overflow: hidden;
-		flex-grow: 0;
-
-		>nav {
-			>div:first-child {
-				display: none;
-			}
-		}
-	}
-
-	>div {
-		@apply w-full;
-	}
+	width: 100%;
 }
 
-.showedSidebar {
-	>aside {
-		animation: showSidebar 0.3s forwards;
-		width: var(--sidebar-width);
-	}
+.showedSidebar>aside {
+	width: var(--sidebar-width);
+}
+
+.initialSidebar>aside {
+	transition: width 0.35s;
 }

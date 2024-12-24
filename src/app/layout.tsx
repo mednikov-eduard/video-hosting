@@ -7,13 +7,13 @@ import { Providers } from '@/providers/Providers'
 
 import './globals.scss'
 
-const notoSans = Noto_Sans({
-	variable: '--font-geist-sans',
-	subsets: ['latin']
-})
+const notoSans = Noto_Sans({subsets: ['latin']})
 
 export const metadata: Metadata = {
-	title: 'Youtube 2.0',
+	title: {
+		absolute: 'Youtube',
+		template: '%s | Course project',
+	},
 	description: 'Best app to watch videos'
 }
 
