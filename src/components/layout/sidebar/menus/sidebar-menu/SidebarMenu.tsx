@@ -1,17 +1,17 @@
-import { usePathname } from 'next/navigation'
-import { match } from 'path-to-regexp'
+import { usePathname } from 'next/navigation';
+import { match } from 'path-to-regexp';
 
-import type { ISidebarItem } from '../../sidebar.types'
+import type { ISidebarItem } from '../../sidebar.types';
 
-import { MenuItem } from './menu-item/MenuItem'
+import { MenuItem } from './menu-item/MenuItem';
 
 interface Props {
-	title?: string
-	menu: ISidebarItem[]
+	title?: string;
+	menu: ISidebarItem[];
 }
 
 export function SidebarMenu({ menu, title }: Props) {
-	const pathname = usePathname()
+	const pathname = usePathname();
 
 	return (
 		<nav>
@@ -24,9 +24,9 @@ export function SidebarMenu({ menu, title }: Props) {
 							item={menuItem}
 							isActive={!!match(menuItem.link)(pathname)}
 						/>
-					)
+					);
 				})}
 			</ul>
 		</nav>
-	)
+	);
 }

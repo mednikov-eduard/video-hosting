@@ -1,16 +1,16 @@
-import { Gamepad2 } from 'lucide-react'
-import type { Metadata } from 'next'
+import { Gamepad2 } from 'lucide-react';
+import type { Metadata } from 'next';
 
-import { SectionTitle } from '@/ui/section-title/SectionTitle'
-import { VideoItem } from '@/ui/video-item/VideoItem'
+import { SectionTitle } from '@/ui/section-title/SectionTitle';
+import { VideoItem } from '@/ui/video-item/VideoItem';
 
-import { PAGE } from '@/config/public-page.config'
+import { PAGE } from '@/config/public-page.config';
 
-import { videoService } from '@/services/video.service'
-import type { IVideo } from '@/types/video.types'
+import { videoService } from '@/services/video.service';
+import type { IVideo } from '@/types/video.types';
 
-export const revalidate = 100
-export const dynamic = 'force-static'
+export const revalidate = 100;
+export const dynamic = 'force-static';
 
 export const metadata: Metadata = {
 	title: 'Video Games',
@@ -23,12 +23,12 @@ export const metadata: Metadata = {
 		title: 'Trending',
 		url: PAGE.VIDEO_GAMES
 	}
-}
+};
 
 export default async function Home() {
-	const data = await videoService.getVideoGames()
+	const data = await videoService.getVideoGames();
 
-	const VideoGames = data.data.videos
+	const VideoGames = data.data.videos;
 
 	return (
 		<section>
@@ -46,5 +46,5 @@ export default async function Home() {
 				)}
 			</div>
 		</section>
-	)
+	);
 }

@@ -1,20 +1,20 @@
-'use client'
+'use client';
 
-import { useQuery } from '@tanstack/react-query'
-import { Compass } from 'lucide-react'
+import { useQuery } from '@tanstack/react-query';
+import { Compass } from 'lucide-react';
 
-import { SectionTitle } from '@/ui/section-title/SectionTitle'
-import { SkeletonLoader } from '@/ui/skeleton-loader/SkeletonLoader'
-import { VideoItem } from '@/ui/video-item/VideoItem'
+import { SectionTitle } from '@/ui/section-title/SectionTitle';
+import { SkeletonLoader } from '@/ui/skeleton-loader/SkeletonLoader';
+import { VideoItem } from '@/ui/video-item/VideoItem';
 
-import { videoService } from '@/services/video.service'
-import type { IVideo } from '@/types/video.types'
+import { videoService } from '@/services/video.service';
+import type { IVideo } from '@/types/video.types';
 
 export function Explore() {
 	const { data, isLoading } = useQuery({
 		queryKey: ['explore'],
 		queryFn: () => videoService.getExploreVideos()
-	})
+	});
 
 	return (
 		<section>
@@ -37,5 +37,5 @@ export function Explore() {
 				)}
 			</div>
 		</section>
-	)
+	);
 }

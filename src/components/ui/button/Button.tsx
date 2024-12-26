@@ -1,8 +1,8 @@
-import type { ButtonHTMLAttributes, ReactNode } from 'react'
+import type { ButtonHTMLAttributes, ReactNode } from 'react';
 
 interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
-	isLoading?: boolean
-	children: ReactNode
+	isLoading?: boolean;
+	children: ReactNode;
 }
 
 export function Button({ isLoading, children, ...props }: Props) {
@@ -14,5 +14,5 @@ export function Button({ isLoading, children, ...props }: Props) {
 		>
 			{isLoading ? 'Loading...' : children}
 		</button>
-	)
+	);
 }

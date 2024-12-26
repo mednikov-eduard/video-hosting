@@ -1,19 +1,19 @@
-'use client'
+'use client';
 
-import cn from 'clsx'
-import { type PropsWithChildren, useState } from 'react'
+import cn from 'clsx';
+import { type PropsWithChildren, useState } from 'react';
 
-import { Content } from './content/Content'
-import { Sidebar } from './sidebar/Sidebar'
+import { Content } from './content/Content';
+import { Sidebar } from './sidebar/Sidebar';
 
-import styles from './Layout.module.scss'
+import styles from './Layout.module.scss';
 
 export function Layout({ children }: PropsWithChildren<unknown>) {
-	const [isShowedSidebar, setIsShowedSidebar] = useState(true)
+	const [isShowedSidebar, setIsShowedSidebar] = useState(true);
 
 	const toggleSidebar = () => {
-		setIsShowedSidebar(!isShowedSidebar)
-	}
+		setIsShowedSidebar(!isShowedSidebar);
+	};
 
 	return (
 		<main
@@ -23,8 +23,8 @@ export function Layout({ children }: PropsWithChildren<unknown>) {
 				isShowedSidebar ? styles.showedSidebar : styles.hidedSidebar
 			)}
 		>
-			<Sidebar toggleSidebar={toggleSidebar}/>
+			<Sidebar toggleSidebar={toggleSidebar} />
 			<Content>{children}</Content>
 		</main>
-	)
+	);
 }

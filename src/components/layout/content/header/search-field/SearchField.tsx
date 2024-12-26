@@ -2,7 +2,7 @@
 import { type KeyboardEvent, useState } from 'react'
 
 import { PAGE } from '@/config/public-page.config' */
-import useSearch from '@/hooks/useSearch'
+import useSearch from '@/hooks/useSearch';
 
 export function SearchField() {
 	/* const [searchTerm, setSearchTerm] = useState('')
@@ -19,7 +19,7 @@ export function SearchField() {
 		}
 	} */
 
-	const { searchTerm, setSearchTerm, handleKeyDown } = useSearch()
+	const { searchTerm, setSearchTerm, handleKeyDown } = useSearch();
 
 	return (
 		<div className='w-10/12'>
@@ -35,5 +35,5 @@ export function SearchField() {
 				onKeyDown={handleKeyDown}
 			/>
 		</div>
-	)
+	);
 }

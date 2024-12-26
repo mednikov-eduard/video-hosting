@@ -1,5 +1,5 @@
-import type { IUser } from './user.types'
-import type { IVideo } from './video.types'
+import type { IUser } from './user.types';
+import type { IVideo } from './video.types';
 
 /**
  * интерфейс канала
@@ -15,14 +15,14 @@ import type { IVideo } from './video.types'
  * @param createdAt - дата создания
  */
 export interface IChannel {
-	id: string
-	slug: string
-	description: string
-	isVerified: boolean
-	avatarUrl: string
-	bannerUrl: string
-	user: IUser
-	videos: IVideo[]
-	subscribers: []
-	createdAt: string
+	id: string;
+	slug: string;
+	description: string;
+	isVerified: boolean;
+	avatarUrl: string;
+	bannerUrl: string;
+	user: IUser;
+	videos: IVideo[];
+	subscribers: [];
+	createdAt: string;
 }

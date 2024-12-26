@@ -1,7 +1,7 @@
-import { SquarePlay } from 'lucide-react'
-import Link from 'next/link'
+import { SquarePlay } from 'lucide-react';
+import Link from 'next/link';
 
-import { COLORS } from '@/constants/colors.constants'
+import { COLORS } from '@/constants/colors.constants';
 
 export function Logo() {
 	return (
@@ -15,5 +15,5 @@ export function Logo() {
 			/>
 			<span className='font-semibold text-xl'>Youtube 2.0</span>
 		</Link>
-	)
+	);
 }

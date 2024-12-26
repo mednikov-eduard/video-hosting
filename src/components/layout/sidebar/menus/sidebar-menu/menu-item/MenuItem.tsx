@@ -1,11 +1,11 @@
-import cn from 'clsx'
-import Link from 'next/link'
+import cn from 'clsx';
+import Link from 'next/link';
 
-import type { ISidebarItem } from '../../../sidebar.types'
+import type { ISidebarItem } from '../../../sidebar.types';
 
 interface Props {
-	item: ISidebarItem
-	isActive: boolean
+	item: ISidebarItem;
+	isActive: boolean;
 }
 
 export function MenuItem({ item, isActive }: Props) {
@@ -32,5 +32,5 @@ export function MenuItem({ item, isActive }: Props) {
 			</Link>
 			{item.isBottomBorder && <span className='h-[1px] bg-border my-5 w-full block'></span>}
 		</li>
-	)
+	);
 }

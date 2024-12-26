@@ -1,10 +1,10 @@
-import type { CSSProperties } from 'react'
-import { twMerge } from 'tailwind-merge'
+import type { CSSProperties } from 'react';
+import { twMerge } from 'tailwind-merge';
 
 interface Props {
-	count?: number
-	style?: CSSProperties
-	classNames?: string
+	count?: number;
+	style?: CSSProperties;
+	classNames?: string;
 }
 
 export function SkeletonLoader({ count = 1, style, classNames = '' }: Props) {
@@ -17,8 +17,8 @@ export function SkeletonLoader({ count = 1, style, classNames = '' }: Props) {
 						className={twMerge('bg-slate-800 rounded-sm h-10 mb-2.5 animate-pulse', classNames)}
 						style={style}
 					></div>
-				)
+				);
 			})}
 		</>
-	)
+	);
 }

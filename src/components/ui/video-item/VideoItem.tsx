@@ -1,25 +1,25 @@
-import * as m from 'framer-motion/m'
-import { BadgeCheck, type LucideIcon } from 'lucide-react'
-import Image from 'next/image'
-import Link from 'next/link'
+import * as m from 'framer-motion/m';
+import { BadgeCheck, type LucideIcon } from 'lucide-react';
+import Image from 'next/image';
+import Link from 'next/link';
 
-import { PAGE } from '@/config/public-page.config'
+import { PAGE } from '@/config/public-page.config';
 
-import { transformDate } from '@/utils/transform-date'
-import { transformViews } from '@/utils/transform-views'
+import { transformDate } from '@/utils/transform-date';
+import { transformViews } from '@/utils/transform-views';
 
-import type { IVideo } from '@/types/video.types'
+import type { IVideo } from '@/types/video.types';
 
 interface Props {
-	video: IVideo
-	Icon?: LucideIcon
+	video: IVideo;
+	Icon?: LucideIcon;
 }
 
 export function VideoItem({ video, Icon }: Props) {
 	return (
-		<m.div
+		<m.article
 			initial={{
-				scale: 0,
+				scale: 0.5,
 				opacity: 0
 			}}
 			animate={{
@@ -101,6 +101,6 @@ export function VideoItem({ video, Icon }: Props) {
 					)}
 				</Link>
 			</div>
-		</m.div>
-	)
+		</m.article>
+	);
 }

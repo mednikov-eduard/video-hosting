@@ -1,0 +1,11 @@
+.recaptcha {
+	filter: invert(1) grayscale(1);
+
+	>div {
+		margin-left: -0.7rem;
+
+		>div {
+			@apply mx-auto
+		}
+	}
+}

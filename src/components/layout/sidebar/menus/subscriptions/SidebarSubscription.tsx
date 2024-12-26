@@ -1,4 +1,3 @@
-
 export function SidebarSubscription() {
 	return (
 		<nav>
@@ -13,5 +12,5 @@ export function SidebarSubscription() {
 				})} */}
 			</ul>
 		</nav>
-	)
+	);
 }

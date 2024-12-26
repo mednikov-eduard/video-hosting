@@ -1,6 +1,6 @@
-import type { PropsWithChildren } from 'react'
+import type { PropsWithChildren } from 'react';
 
-import { Header } from './header/Header'
+import { Header } from './header/Header';
 
 export function Content({ children }: PropsWithChildren<unknown>) {
 	return (
@@ -12,5 +12,5 @@ export function Content({ children }: PropsWithChildren<unknown>) {
 			<Header />
 			<section className='p-layout'>{children}</section>
 		</div>
-	)
+	);
 }

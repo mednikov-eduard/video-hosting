@@ -1,11 +1,11 @@
-import { Dot, Radio } from 'lucide-react'
-import Image from 'next/image'
-import Link from 'next/link'
+import { Dot, Radio } from 'lucide-react';
+import Image from 'next/image';
+import Link from 'next/link';
 
-import type { ISidebarSubItem } from '../../../sidebar.types'
+import type { ISidebarSubItem } from '../../../sidebar.types';
 
 interface Props {
-	item: ISidebarSubItem
+	item: ISidebarSubItem;
 }
 
 export function SubItem({ item }: Props) {
@@ -27,5 +27,5 @@ export function SubItem({ item }: Props) {
 				</span>
 			</Link>
 		</li>
-	)
+	);
 }

@@ -1,4 +1,4 @@
-import type { IChannel } from './channel.types'
+import type { IChannel } from './channel.types';
 
 /**
  * интерфейс видео
@@ -14,14 +14,14 @@ import type { IChannel } from './channel.types'
  * @param createdAt - дата создания видео
  */
 export interface IVideo {
-	id: string
-	title: string
-	publicId: string
-	description: string
-	thumbnailUrl: string
-	videoFileName: string
-	viewsCount: number
-	isPublic: boolean
-	channel: IChannel
-	createdAt: string
+	id: string;
+	title: string;
+	publicId: string;
+	description: string;
+	thumbnailUrl: string;
+	videoFileName: string;
+	viewsCount: number;
+	isPublic: boolean;
+	channel: IChannel;
+	createdAt: string;
 }

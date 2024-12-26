@@ -8,12 +8,12 @@ import {
 	History,
 	Settings,
 	TvMinimalPlay
-} from 'lucide-react'
+} from 'lucide-react';
 
-import { PAGE } from '@/config/public-page.config'
+import { PAGE } from '@/config/public-page.config';
+import { STUDIO_PAGE } from '@/config/studio-page.config';
 
-import type { ISidebarItem } from './sidebar.types'
-import { STUDIO_PAGE } from '@/config/studio-page.config'
+import type { ISidebarItem } from './sidebar.types';
 
 export const SIDEBAR_DATA: ISidebarItem[] = [
 	{
@@ -53,7 +53,7 @@ export const SIDEBAR_DATA: ISidebarItem[] = [
 		link: PAGE.LIKED_VIDEOS,
 		isBottomBorder: true
 	}
-]
+];
 
 export const MORE_SIDEBAR_DATA: ISidebarItem[] = [
 	{
@@ -66,4 +66,4 @@ export const MORE_SIDEBAR_DATA: ISidebarItem[] = [
 		label: 'Send feedback',
 		link: PAGE.FEEDBACK
 	}
-]
+];

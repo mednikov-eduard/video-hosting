@@ -1,9 +1,9 @@
-import type { LucideIcon } from 'lucide-react'
+import type { LucideIcon } from 'lucide-react';
 
 interface Props {
-	children: React.ReactNode
-	Icon?: LucideIcon
-	isH1?: boolean
+	children: React.ReactNode;
+	Icon?: LucideIcon;
+	isH1?: boolean;
 }
 
 export function SectionTitle({ children, Icon, isH1 = false }: Props) {
@@ -16,5 +16,5 @@ export function SectionTitle({ children, Icon, isH1 = false }: Props) {
 				<h2 className='font-semibold text-lg'>{children}</h2>
 			)}
 		</div>
-	)
+	);
 }

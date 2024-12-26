@@ -1,23 +1,23 @@
-'use client'
+'use client';
 
-import { useQuery } from '@tanstack/react-query'
-import { Search } from 'lucide-react'
-import { useSearchParams } from 'next/navigation'
+import { useQuery } from '@tanstack/react-query';
+import { Search } from 'lucide-react';
+import { useSearchParams } from 'next/navigation';
 
-import { SectionTitle } from '@/ui/section-title/SectionTitle'
-import { SkeletonLoader } from '@/ui/skeleton-loader/SkeletonLoader'
-import { VideoItem } from '@/ui/video-item/VideoItem'
+import { SectionTitle } from '@/ui/section-title/SectionTitle';
+import { SkeletonLoader } from '@/ui/skeleton-loader/SkeletonLoader';
+import { VideoItem } from '@/ui/video-item/VideoItem';
 
-import { videoService } from '@/services/video.service'
-import type { IVideo } from '@/types/video.types'
+import { videoService } from '@/services/video.service';
+import type { IVideo } from '@/types/video.types';
 
 export function SearchHelper() {
-	const searchParams = useSearchParams()
+	const searchParams = useSearchParams();
 
 	const { data, isLoading } = useQuery({
 		queryKey: ['search', searchParams.get('term')],
 		queryFn: () => videoService.getAllVideos(searchParams.get('term'))
-	})
+	});
 
 	return (
 		<section>
@@ -33,16 +33,17 @@ export function SearchHelper() {
 						count={6}
 						classNames='h-40 rounded-md'
 					/>
-				) : (
-					data?.data.videos.length ?
+				) : data?.data.videos.length ? (
 					data.data.videos.map((video: IVideo) => (
 						<VideoItem
 							key={video.id}
 							video={video}
 						/>
-					)): <p>No results found</p>
+					))
+				) : (
+					<p>No results found</p>
 				)}
 			</div>
 		</section>
-	)
+	);
 }
