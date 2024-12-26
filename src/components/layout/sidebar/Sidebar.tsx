@@ -5,7 +5,7 @@ import { MORE_SIDEBAR_DATA, SIDEBAR_DATA } from './sidebar.data'
 
 export function Sidebar({toggleSidebar}: { toggleSidebar: () => void }) {
 	return (
-		<aside className=' p-layout border-r border-border whitespace-nowrap overflow-hidden'>
+		<aside className=' p-layout border-r border-border bg-bg whitespace-nowrap overflow-hidden z-10'>
 			<SidebarHeader toggleSidebar={toggleSidebar}/>
 			<SidebarMenu menu={SIDEBAR_DATA} />
 			<SidebarSubscription />

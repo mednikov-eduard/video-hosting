@@ -1,6 +1,6 @@
 class StudioPageConfig {
 	HOME = '/studio'
-	SETTINGS = '${this.HOME}/settings'
+	SETTINGS = `${this.HOME}/settings`
 
 	UPLOAD_VIDEO = `${this.HOME}/upload`
 

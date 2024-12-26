@@ -1,8 +1,6 @@
 import type { Metadata } from 'next'
 import { Noto_Sans } from 'next/font/google'
 
-import { Layout } from '@/components/layout/layout'
-
 import { Providers } from '@/providers/Providers'
 
 import './globals.scss'
@@ -26,7 +24,7 @@ export default function RootLayout({
 		<html lang='en'>
 			<body className={`${notoSans.className}`}>
 				<Providers>
-					<Layout>{children}</Layout>
+					{children}
 				</Providers>
 			</body>
 		</html>

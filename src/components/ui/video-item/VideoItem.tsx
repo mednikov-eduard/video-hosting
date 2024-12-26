@@ -1,3 +1,4 @@
+import * as m from 'framer-motion/m'
 import { BadgeCheck, type LucideIcon } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -16,7 +17,27 @@ interface Props {
 
 export function VideoItem({ video, Icon }: Props) {
 	return (
-		<div>
+		<m.div
+			initial={{
+				scale: 0,
+				opacity: 0
+			}}
+			animate={{
+				scale: 1,
+				opacity: 1
+			}}
+			whileHover={{
+				scale: 1.15,
+				y: -5
+			}}
+			transition={{
+				type: 'spring',
+				// Жесткость
+				stiffness: 500,
+				// демпфирование
+				damping: 30
+			}}
+		>
 			<div className='relative mb-1.5'>
 				<Link href={PAGE.VIDEO(video.publicId)}>
 					<Image
@@ -80,6 +101,6 @@ export function VideoItem({ video, Icon }: Props) {
 					)}
 				</Link>
 			</div>
-		</div>
+		</m.div>
 	)
 }
