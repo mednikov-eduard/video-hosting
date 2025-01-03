@@ -29,7 +29,7 @@ export function Auth() {
 
 	const { onSubmit, recaptchaRef, isLoading } = useAuthForm(isLogin ? 'login' : 'register', reset);
 
-	const accessToken = useTypedSelector((state) => state.auth.accessToken);
+	const accessToken = useTypedSelector(state => state.auth.accessToken);
 	const router = useRouter();
 
 	useEffect(() => {
@@ -45,7 +45,6 @@ export function Auth() {
 				<div className='text-center mb-2'>
 					<Logo />
 				</div>
-
 				<div className='flex justify-center mb-6'>
 					<button
 						type='button'

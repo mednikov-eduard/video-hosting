@@ -20,4 +20,5 @@ export interface IFullUser extends IUser {
 	channel: IChannel;
 	subscription: IChannel[];
 	watchHistory: IWatchHistory[];
+	verificationToken?: string | null;
 }
