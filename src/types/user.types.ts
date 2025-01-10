@@ -13,7 +13,6 @@ export interface IUser {
 	name: string;
 	email?: string;
 	password?: string;
-	channel?: IChannel;
 }
 
 export interface IFullUser extends IUser {

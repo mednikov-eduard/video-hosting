@@ -1,14 +1,22 @@
 import { useMutation } from '@tanstack/react-query';
 import { LogOut } from 'lucide-react';
+import { useRouter } from 'next/navigation';
+
+import { PAGE } from '@/config/public-page.config';
 
 import { authService } from '@/services/auth.service';
 import { useTypedSelector } from '@/store';
 
 export function Logout() {
+	const router = useRouter();
+
 	const { mutate, isPending } = useMutation({
 		mutationKey: ['logout'],
 		mutationFn: async () => {
 			authService.logout();
+		},
+		onSuccess: () => {
+			router.push(PAGE.HOME);
 		}
 	});
 

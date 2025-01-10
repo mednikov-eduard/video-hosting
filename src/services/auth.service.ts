@@ -70,7 +70,7 @@ class AuthService {
 			this._saveTokenStorage(response.data.accessToken);
 		}
 
-		return response;
+		return response.data;
 	}
 
 	async logout() {

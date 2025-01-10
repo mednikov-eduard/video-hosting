@@ -30,6 +30,7 @@ export const authSlice = createSlice({
 			state.user = action.payload.user;
 			state.isLoggedIn = true;
 			state.accessToken = action.payload.accessToken;
+			
 		},
 
 		clearAuthData: state => {
