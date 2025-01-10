@@ -1,17 +1,21 @@
 'use client';
 
+import { Controller } from 'react-hook-form';
+
 import { useSettings } from '@/hooks/useSettings';
 
 import { Button } from '../button/Button';
 import { Field } from '../field/Field';
 import { Textarea } from '../field/Textarea';
+import { UploadField } from '../upload-field/UploadField';
 
 export function SettingsForm() {
 	const {
 		form: {
 			handleSubmit,
 			register,
-			formState: { errors }
+			formState: { errors },
+			control
 		},
 		onSubmit,
 		isLoading
@@ -33,7 +37,7 @@ export function SettingsForm() {
 						<Field
 							label='Password'
 							type='password'
-							registration={register('password', { required: 'Password is required!' })}
+							registration={register('password')}
 							error={errors.password?.message}
 							placeholder='Enter password:'
 						/>
@@ -60,9 +64,39 @@ export function SettingsForm() {
 							rows={4}
 						/>
 					</div>
-					<div></div>
+					<div>
+						<Controller
+							control={control}
+							name='channel.avatarUrl'
+							render={({ field: { onChange, value }, fieldState: { error } }) => (
+								<UploadField
+									label='Avatar'
+									onChange={onChange}
+									value={value}
+									error={error}
+									folder='avatars'
+									className='mb-5'
+								/>
+							)}
+						/>
+						<Controller
+							control={control}
+							name='channel.bannerUrl'
+							render={({ field: { onChange, value }, fieldState: { error } }) => (
+								<UploadField
+									label='Banner'
+									onChange={onChange}
+									value={value}
+									error={error}
+									folder='banners'
+									aspectRation='16:9'
+									overlay='/overlay.png'
+								/>
+							)}
+						/>
+					</div>
 				</div>
-				<div className='text-center mt-6'>
+				<div className='text-center mt-10'>
 					<Button
 						type='submit'
 						isLoading={isLoading}

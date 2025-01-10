@@ -11,18 +11,33 @@ export function useSettings() {
 		mode: 'onChange'
 	});
 
-	const { profile, isSuccess } = useProfile();
-	
+	const { profile, isSuccess, refetch } = useProfile();
 
 	useEffect(() => {
 		if (!isSuccess) return;
 
-		form.reset(profile);
+		const channel = profile?.channel
+			? {
+					avatarUrl: profile?.channel?.avatarUrl,
+					bannerUrl: profile?.channel?.bannerUrl,
+					description: profile?.channel?.description,
+					slug: profile?.channel?.slug
+				}
+			: {};
+
+		form.reset({
+			channel,
+			email: profile?.email,
+			name: profile?.name
+		});
 	}, [form, profile, isSuccess]);
 
 	const { mutate, isPending } = useMutation({
 		mutationKey: ['update-settings'],
-		mutationFn: (data: ISettingsData) => userService.updateProfile(data)
+		mutationFn: (data: ISettingsData) => userService.updateProfile(data),
+		onSuccess: () => {
+			refetch();
+		}
 	});
 
 	const onSubmit: SubmitHandler<ISettingsData> = data => {

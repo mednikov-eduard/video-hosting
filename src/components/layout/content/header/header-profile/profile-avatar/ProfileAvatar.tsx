@@ -9,6 +9,7 @@ import { useProfile } from '@/hooks/useProfile';
 
 export function ProfileAvatar() {
 	const { isLoading, profile } = useProfile();
+	
 
 	if (isLoading) return <SkeletonLoader classNames='mb-0 w-10 rounded-md' />;
 
@@ -23,7 +24,7 @@ export function ProfileAvatar() {
 					className='rounded-lg'
 				/>
 			</Link>
-			{profile?.verificationToken && (
+			{!profile?.verificationToken && (
 				<div className='absolute -left-4 -bottom-3.5 bg-primary p-0.5 rounded text-xs w-max'>
 					Not verified
 				</div>

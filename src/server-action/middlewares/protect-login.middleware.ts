@@ -8,6 +8,10 @@ import { STUDIO_PAGE } from '@/config/studio-page.config'
 
 export async function protectLoginPages(request: NextRequest) {
 	const tokens = await getTokensFromRequest(request)
+
+	console.log(tokens);
+	
+
 	if (!tokens) return NextResponse.next()
 
 	const verifiedData = await jwtVerifyServer(tokens.accessToken)

@@ -20,30 +20,30 @@ export function SearchHelper() {
 	});
 
 	return (
-		<section>
-			<SectionTitle
-				Icon={Search}
-				isH1
-			>
-				Search by {searchParams.get('term')}
-			</SectionTitle>
-			<div className='grid grid-cols-6 gap-6'>
-				{isLoading ? (
-					<SkeletonLoader
-						count={6}
-						classNames='h-40 rounded-md'
-					/>
-				) : data?.data.videos.length ? (
-					data.data.videos.map((video: IVideo) => (
-						<VideoItem
-							key={video.id}
-							video={video}
+			<section>
+				<SectionTitle
+					Icon={Search}
+					isH1
+				>
+					Search by {searchParams.get('term')}
+				</SectionTitle>
+				<div className='grid grid-cols-6 gap-6'>
+					{isLoading ? (
+						<SkeletonLoader
+							count={6}
+							classNames='h-40 rounded-md'
 						/>
-					))
-				) : (
-					<p>No results found</p>
-				)}
-			</div>
-		</section>
+					) : data?.data.videos.length ? (
+						data.data.videos.map((video: IVideo) => (
+							<VideoItem
+								key={video.id}
+								video={video}
+							/>
+						))
+					) : (
+						<p>No results found</p>
+					)}
+				</div>
+			</section>
 	);
 }
