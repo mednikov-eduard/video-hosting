@@ -1,14 +1,9 @@
 import cn from 'clsx';
 import Link from 'next/link';
 
-import type { ISidebarItem } from '../../../sidebar.types';
+import type { IMenuItemProps } from '../MyChannelMenuItem/menu.types';
 
-interface Props {
-	item: ISidebarItem;
-	isActive: boolean;
-}
-
-export function MenuItem({ item, isActive }: Props) {
+export function MenuItem({ item, isActive }: IMenuItemProps) {
 	return (
 		<li>
 			<Link

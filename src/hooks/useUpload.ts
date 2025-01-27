@@ -22,20 +22,22 @@ export const useUpload: TUseUpload = ({ onChange, folder }) => {
 		}
 	});
 
-	const uploadFile = useCallback((e: ChangeEvent<HTMLInputElement>) => {
-		const files = e.target.files;
-		if (!files) return;
+	const uploadFile = useCallback(
+		(e: ChangeEvent<HTMLInputElement>) => {
+			const files = e.target.files;
+			if (!files) return;
 
-		const formData = new FormData();
+			const formData = new FormData();
 
-		formData.append('file', files[0]);
+			formData.append('file', files[0]);
 
-		mutate(formData)
-	}, [mutate]);
+			mutate(formData);
+		},
+		[mutate]
+	);
 
 	return {
 		uploadFile,
 		isLoading: isPending
-  
-	}
+	};
 };

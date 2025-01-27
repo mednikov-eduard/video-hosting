@@ -29,7 +29,7 @@ export function Auth() {
 
 	return (
 		<div className='w-screen h-screen flex justify-center items-center'>
-			<div className='w-1/6 p-layout border-border border rounded'>
+			<div className='w-1/4 p-layout border-border border rounded'>
 				<div className='text-center mb-2'>
 					<Logo />
 				</div>

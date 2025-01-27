@@ -23,6 +23,6 @@ export interface IChannel {
 	bannerUrl: string;
 	user: IUser;
 	videos: IVideo[];
-	subscribers: [];
+	subscribers: IUser[];
 	createdAt: string;
 }

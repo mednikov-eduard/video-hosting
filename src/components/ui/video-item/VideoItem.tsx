@@ -27,8 +27,8 @@ export function VideoItem({ video, Icon }: Props) {
 				opacity: 1
 			}}
 			whileHover={{
-				scale: 1.15,
-				y: -5
+				scale: 1.1,
+				y: -5,
 			}}
 			transition={{
 				type: 'spring',
@@ -56,7 +56,7 @@ export function VideoItem({ video, Icon }: Props) {
 						src={video.channel.avatarUrl}
 						width={35}
 						height={35}
-						alt={video.channel.slug}
+						alt={video?.channel?.user?.name || ''}
 						className='rounded-full shadow'
 					/>
 				</Link>
