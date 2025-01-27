@@ -28,7 +28,7 @@ export const metadata: Metadata = {
 export default async function Home() {
 	const data = await videoService.getTrendingVideos();
 
-	const trendingVideos = data.data;
+	const trendingVideos = data?.data;
 
 	return (
 		<section>

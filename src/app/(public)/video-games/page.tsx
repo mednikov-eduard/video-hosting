@@ -28,7 +28,7 @@ export const metadata: Metadata = {
 export default async function Home() {
 	const data = await videoService.getVideoGames();
 
-	const VideoGames = data.data.videos;
+	const VideoGames = data?.data?.videos;
 
 	return (
 		<section>
