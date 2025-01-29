@@ -3,14 +3,13 @@ import { Video } from 'lucide-react';
 import { SectionTitle } from '@/ui/section-title/SectionTitle';
 import { VideoItem } from '@/ui/video-item/VideoItem';
 
-import type { IChannel } from '@/types/channel.types';
-import type { IVideo } from '@/types/video.types';
+import type { ISingleVideoResponse, IVideo } from '@/types/video.types';
 
-export function ChannelVideos({ videos }: { videos: IChannel['videos'] }) {
+export function SimilarVideos({ videos }: { videos: ISingleVideoResponse['similarVideos'] }) {
 	return (
 		<section className='mb-10'>
-			<SectionTitle Icon={Video}>Videos</SectionTitle>
-			<div className='grid grid-6-cols'>
+			<SectionTitle Icon={Video}>Similar</SectionTitle>
+			<div className='grid grid-cols-1 gap-y-3'>
 				{videos.map((video: IVideo) => (
 					<VideoItem
 						key={video.id}

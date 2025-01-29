@@ -1,6 +1,5 @@
-import cn from 'clsx';
 import type { LucideIcon } from 'lucide-react';
-import { twMerge } from 'tailwind-merge'
+import { twMerge } from 'tailwind-merge';
 
 interface Props {
 	children: React.ReactNode;
@@ -8,9 +7,17 @@ interface Props {
 	isH1?: boolean;
 	isPageHeading?: boolean;
 	className?: string;
+	classNameHeading?: string;
 }
 
-export function SectionTitle({ children, Icon, isH1 = false, isPageHeading = false, className }: Props) {
+export function SectionTitle({
+	children,
+	Icon,
+	isH1 = false,
+	isPageHeading = false,
+	className,
+	classNameHeading
+}: Props) {
 	return (
 		<div
 			className={twMerge(
@@ -21,11 +28,17 @@ export function SectionTitle({ children, Icon, isH1 = false, isPageHeading = fal
 		>
 			{Icon && <Icon className='text-primary' />}
 			{isH1 || isPageHeading ? (
-				<h1 className={cn('font-semibold', isPageHeading ? 'text-3xl' : 'text-lg')}>
+				<h1
+					className={twMerge(
+						'font-semibold',
+						isPageHeading ? 'text-3xl' : 'text-lg',
+						classNameHeading
+					)}
+				>
 					{children}
 				</h1>
 			) : (
-				<h2 className='font-semibold text-lg'>{children}</h2>
+				<h2 className={twMerge('font-semibold text-lg', classNameHeading)}>{children}</h2>
 			)}
 		</div>
 	);

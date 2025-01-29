@@ -1,6 +1,6 @@
 import { axiosClassic } from '@/api/axios';
 
-import type { IVideo } from '@/types/video.types';
+import type { ISingleVideoResponse, IVideo } from '@/types/video.types';
 
 /**
  * Класс, представляющий сервис для работы с видео.
@@ -41,6 +41,10 @@ class VideoService {
 				: {}
 		);
 	}
+
+	byPublicId(id?: string | null) {
+			return axiosClassic.get<ISingleVideoResponse>(`${this._baseUrl}/by-publicId/${id}`);
+		}
 }
 
 export const videoService = new VideoService();

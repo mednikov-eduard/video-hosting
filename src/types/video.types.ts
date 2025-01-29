@@ -25,3 +25,11 @@ export interface IVideo {
 	channel: IChannel;
 	createdAt: string;
 }
+
+export interface IFullVideo extends IVideo {
+	likes: [];
+}
+
+export interface ISingleVideoResponse extends IFullVideo {
+	similarVideos: IVideo[];
+}
