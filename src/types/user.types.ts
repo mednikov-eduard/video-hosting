@@ -1,5 +1,6 @@
 import type { IChannel } from './channel.types';
 import type { IWatchHistory } from './history.types';
+import type { IVideo } from './video.types'
 
 /**
  * интерфейс пользователя
@@ -17,7 +18,11 @@ export interface IUser {
 
 export interface IFullUser extends IUser {
 	channel: IChannel;
-	subscription: IChannel[];
+	subscriptions: IChannel[];
 	watchHistory: IWatchHistory[];
 	verificationToken?: string | null;
+}
+
+export interface IProfileResponse extends IFullUser {
+	subscribedVideos?: IVideo[]
 }

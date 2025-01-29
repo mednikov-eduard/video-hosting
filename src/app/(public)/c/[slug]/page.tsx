@@ -1,8 +1,9 @@
 import type { Metadata } from 'next';
+import dynamicNext from 'next/dynamic';
 import Image from 'next/image';
 
-import { Button } from '@/ui/button/Button';
 import { SectionTitle } from '@/ui/section-title/SectionTitle';
+import { SkeletonLoader } from '@/ui/skeleton-loader/SkeletonLoader';
 import { VerifiedItem } from '@/ui/verified-item/VerifiedItem';
 
 /* import type { TPageSlugProp } from '@/types/pages.types'; */
@@ -11,6 +12,11 @@ import { transformCount } from '@/utils/transform-count';
 import { ChannelVideos } from './ChannelVideos';
 import { channelService } from '@/services/channel.service';
 import type { IChannel } from '@/types/channel.types';
+
+const DynamicSubscribeButton = dynamicNext(
+	() => import('@/components/subscribe-button/SubscribeButton').then(mod => mod.SubscribeButton),
+	{ ssr: true, loading: () => <SkeletonLoader classNames='w-36 h-10 rounded-md' /> }
+);
 
 export const revalidate = 100;
 export const dynamic = 'force-static';
@@ -50,20 +56,23 @@ export default async function Page(props: { params: tParams }) {
 	return (
 		<section>
 			<div>
-				<Image
-					alt={channel.user.name || ''}
-					src={channel.bannerUrl}
-					width={1284}
-					height={207}
-					className='rounded-3xl'
-				/>
+				<div className='relative w-full h-[249px] rounded-3xl overflow-hidden shadow-md'>
+					<Image
+						alt={channel.user.name || ''}
+						src={channel.bannerUrl}
+						style={{ objectFit: 'cover' }}
+						priority
+						fill
+					/>
+				</div>
 				<div className='flex items-center gap-5 mt-7 mb-10 w-1/2'>
 					<Image
 						alt={channel.slug}
 						src={channel.avatarUrl}
 						width={162}
 						height={162}
-						className='rounded-xl flex-shrink-0'
+						className='rounded-xl flex-shrink-0 shadow-md'
+						priority
 					/>
 					<div>
 						<SectionTitle
@@ -81,8 +90,10 @@ export default async function Page(props: { params: tParams }) {
 							<span>•</span>
 							<span>{transformCount(channel.videos.length)} videos</span>
 						</div>
-						<article className='mb-2 text-gray-400 text-sm leading-snug'>{channel.description}</article>
-						<Button>Subscribe</Button>
+						<article className='mb-2 text-gray-400 text-sm leading-snug'>
+							{channel.description}
+						</article>
+						<DynamicSubscribeButton slug={slug} />
 					</div>
 				</div>
 			</div>

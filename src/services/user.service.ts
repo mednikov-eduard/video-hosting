@@ -1,7 +1,7 @@
 import { instance } from '@/api/axios';
 import type { ISettingsData } from '@/types/settings.types'
 
-import type { IFullUser } from '@/types/user.types';
+import type { IProfileResponse } from '@/types/user.types';
 
 /**
  * Класс, представляющий сервис для работы с видео.
@@ -13,7 +13,7 @@ class UserService {
 	 * Получает список трендовых видео.
 	 */
 	getProfile() {
-		return instance.get<IFullUser>(`${this._baseUrl}/profile`);
+		return instance.get<IProfileResponse>(`${this._baseUrl}/profile`);
 	}
 
 	updateProfile(data: ISettingsData) {

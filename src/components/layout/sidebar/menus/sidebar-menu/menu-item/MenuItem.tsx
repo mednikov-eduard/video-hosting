@@ -9,6 +9,7 @@ export function MenuItem({ item, isActive }: IMenuItemProps) {
 			<Link
 				href={item.link}
 				className={'group py-3 flex items-center gap-5 '}
+				title={item.label}
 			>
 				<item.icon
 					className={cn('group-hover:text-primary transition group-hover:rotate-6 min-w-6', {

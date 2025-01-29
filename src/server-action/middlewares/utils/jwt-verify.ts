@@ -1,6 +1,6 @@
 'use server'
 
-import { jwtVerify } from 'jose'
+import * as jose from 'jose'
 
 interface ITokenInside {
 	id: string
@@ -10,7 +10,7 @@ interface ITokenInside {
 
 export async function jwtVerifyServer(accessToken: string) {
 	try {
-		const { payload }: { payload: ITokenInside } = await jwtVerify(
+		const { payload }: { payload: ITokenInside } = await jose.jwtVerify(
 			accessToken,
 			new TextEncoder().encode(`${process.env.JWT_SECRET}`)
 		)
@@ -23,7 +23,6 @@ export async function jwtVerifyServer(accessToken: string) {
 			return null
 		}
 
-		console.log(error)
 		return null
 	}
 }
