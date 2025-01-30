@@ -1,6 +1,6 @@
 import { instance } from '@/api/axios';
-import type { ISettingsData } from '@/types/settings.types'
 
+import type { ISettingsData } from '@/types/settings.types';
 import type { IProfileResponse } from '@/types/user.types';
 
 /**
@@ -18,6 +18,10 @@ class UserService {
 
 	updateProfile(data: ISettingsData) {
 		return instance.put<boolean>(`${this._baseUrl}/profile`, data);
+	}
+
+	toggleLike(videoId: string) {
+		return instance.put(`${this._baseUrl}/profile/likes`, { videoId });
 	}
 }
 

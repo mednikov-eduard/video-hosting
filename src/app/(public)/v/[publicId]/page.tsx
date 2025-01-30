@@ -1,28 +1,16 @@
-import { Heart, ListPlus } from 'lucide-react';
 import type { Metadata } from 'next';
-import dynamicNext from 'next/dynamic';
-import Image from 'next/image';
-import Link from 'next/link';
+
+import { VideoDescription } from '@/components/video-description/VideoDescription';
 
 import { SectionTitle } from '@/ui/section-title/SectionTitle';
-import { SkeletonLoader } from '@/ui/skeleton-loader/SkeletonLoader';
-import { VerifiedItem } from '@/ui/verified-item/VerifiedItem';
-
-import { PAGE } from '@/config/public-page.config';
+import { VideoActions } from '@/ui/video-actions/VideoActions';
+import { VideoChannelInfo } from '@/ui/video-channel-info/VideoChannelInfo';
 
 import { stripHtml } from '@/utils/strip-html';
-/* import type { TPageSlugProp } from '@/types/pages.types'; */
-import { transformCount } from '@/utils/transform-count';
 
 import { SimilarVideos } from './SimilarVideos';
 import { videoService } from '@/services/video.service';
 import type { ISingleVideoResponse } from '@/types/video.types';
-import { VideoDescription } from '@/components/video-description/VideoDescription'
-
-const DynamicSubscribeButton = dynamicNext(
-	() => import('@/components/subscribe-button/SubscribeButton').then(mod => mod.SubscribeButton),
-	{ ssr: true, loading: () => <SkeletonLoader classNames='w-36 h-10 rounded-md' /> }
-);
 
 export const revalidate = 100;
 export const dynamic = 'force-static';
@@ -59,7 +47,7 @@ export default async function Page(props: { params: tParams }) {
 	const video = data.data;
 
 	return (
-		<section className='grid grid-cols-[2.7fr_1fr] gap-10'>
+		<section className='grid grid-cols-[3fr_1fr] gap-20'>
 			<div className=''>
 				<div className='relative w-full h-[249px] rounded-3xl overflow-hidden shadow-md mb-6'>
 					{/* <video src={video.videoFileName} /> */}
@@ -74,49 +62,19 @@ export default async function Page(props: { params: tParams }) {
 						</SectionTitle>
 						<div className='text-gray-400'>{video.viewsCount.toLocaleString()} views</div>
 					</div>
-					<div className='flex items-center gap-7'>
-						<button className='flex items-center gap-1 opacity-80 hover:opacity-100 transition'>
-							<ListPlus size={20} />
-							Save
-						</button>
-						<button className='flex items-center gap-2 text-primary opacity-80 hover:opacity-100 transition'>
-							<Heart size={20} />
-							{transformCount(video.likes.length)}
-						</button>
-					</div>
+					<VideoActions
+						likesCount={video.likes.length}
+						videoId={video.id}
+					/>
 				</div>
-				<div className='flex items-center justify-between mb-6'>
-					<div className='flex gap-2.5  items-center'>
-						<Link href={PAGE.CHANNEL(video.channel.slug)}>
-							<Image
-								alt={video.channel.user.name || ''}
-								src={video.channel.avatarUrl}
-								width={40}
-								height={40}
-								className='rounded flex-shrink-0 shadow'
-								priority
-							/>
-						</Link>
-						<div>
-							<Link href={PAGE.CHANNEL(video.channel.slug)}>
-								<SectionTitle
-									className='mb-0'
-									classNameHeading='text-lg'
-								>
-									<span className='flex items-center gap-2'>
-										{video.channel.user.name}{' '}
-										{video.channel.isVerified && <VerifiedItem size={14} />}
-									</span>
-								</SectionTitle>
-							</Link>
-							<div className=' text-gray-400 text-sm flex items-center gap-1'>
-								{transformCount(video.channel.subscribers.length)} subscribers
-							</div>
-						</div>
-					</div>
-					<DynamicSubscribeButton slug={video.channel.slug} />
-				</div>
-				<VideoDescription description={video.description}/>
+				<VideoChannelInfo
+					slug={video.channel.slug}
+					userName={video.channel.user.name}
+					avatarUrl={video.channel.avatarUrl}
+					isVerified={video.channel.isVerified}
+					subscribers={video.channel.subscribers.length}
+				/>
+				<VideoDescription description={video.description} />
 			</div>
 			{!!video.similarVideos?.length && <SimilarVideos videos={video.similarVideos} />}
 		</section>

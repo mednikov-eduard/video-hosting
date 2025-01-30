@@ -9,7 +9,7 @@ export function SimilarVideos({ videos }: { videos: ISingleVideoResponse['simila
 	return (
 		<section className='mb-10'>
 			<SectionTitle Icon={Video}>Similar</SectionTitle>
-			<div className='grid grid-cols-1 gap-y-3'>
+			<div className='grid grid-cols-1 gap-y-8'>
 				{videos.map((video: IVideo) => (
 					<VideoItem
 						key={video.id}

@@ -22,7 +22,8 @@ export function VideoItem({ video, Icon }: Props) {
 		<m.article
 			initial={{
 				scale: 0.5,
-				opacity: 0
+				opacity: 0,
+				borderRadius: 6
 			}}
 			animate={{
 				scale: 1,
@@ -30,7 +31,8 @@ export function VideoItem({ video, Icon }: Props) {
 			}}
 			whileHover={{
 				scale: 1.1,
-				y: -5
+				y: -5,
+				boxShadow: '0px 0px 25px rgba(255, 255, 255, 0.137)'
 			}}
 			transition={{
 				type: 'spring',
@@ -44,8 +46,8 @@ export function VideoItem({ video, Icon }: Props) {
 				<Link href={PAGE.VIDEO(video.publicId)}>
 					<Image
 						src={video.thumbnailUrl}
-						width={280}
-						height={140}
+						width={312}
+						height={171}
 						alt={video.title}
 						className='rounded-md'
 					/>
@@ -63,38 +65,40 @@ export function VideoItem({ video, Icon }: Props) {
 					/>
 				</Link>
 			</div>
-			<div className='mb-1.5 flex items-center justify-between'>
-				<div className='flex items-center gap-0.5'>
-					{Icon && (
-						<Icon
-							className='text-red-600'
-							size={20}
-						/>
-					)}
-					<span className='text-gray-400 text-sm'>{transformCount(video.viewsCount)} views</span>
+			<div className='p-1'>
+				<div className='mb-1.5 flex items-center justify-between'>
+					<div className='flex items-center gap-0.5'>
+						{Icon && (
+							<Icon
+								className='text-red-600'
+								size={20}
+							/>
+						)}
+						<span className='text-gray-400 text-sm'>{transformCount(video.viewsCount)} views</span>
+					</div>
+					<div>
+						<span className='text-gray-400 text-xs'>{transformDate(video.createdAt)}</span>
+					</div>
+				</div>
+				<div className='mb-1'>
+					<Link
+						href={PAGE.VIDEO(video.publicId)}
+						className='line-clamp-2 leading-[1.3]'
+					>
+						{video.title}
+					</Link>
 				</div>
 				<div>
-					<span className='text-gray-400 text-xs'>{transformDate(video.createdAt)}</span>
+					<Link
+						href={PAGE.CHANNEL(video.channel.slug)}
+						className='flex items-center gap-1'
+					>
+						<span className='text-gray-400 text-sm hover:text-gray-100 transition-all'>
+							{video.channel.user.name}
+						</span>
+						{video.channel.isVerified && <VerifiedItem />}
+					</Link>
 				</div>
-			</div>
-			<div className='mb-1'>
-				<Link
-					href={PAGE.VIDEO(video.publicId)}
-					className='line-clamp-2 leading-[1.3]'
-				>
-					{video.title}
-				</Link>
-			</div>
-			<div>
-				<Link
-					href={PAGE.CHANNEL(video.channel.slug)}
-					className='flex items-center gap-1'
-				>
-					<span className='text-gray-400 text-sm hover:text-gray-100 transition-all'>
-						{video.channel.user.name}
-					</span>
-					{video.channel.isVerified && <VerifiedItem />}
-				</Link>
 			</div>
 		</m.article>
 	);

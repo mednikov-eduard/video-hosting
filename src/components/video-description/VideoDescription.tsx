@@ -17,7 +17,7 @@ export function VideoDescription({ description }: Props) {
 	const { initialContent, isShouldShowToggle } = processHtmlContent(description, 3);
 
 	return (
-		<div className='mb-4'>
+		<div className='mb-4 bg-bdLight px-3 py-1 rounded-md'>
 				<article
 					className={styles.article}
 				>

@@ -1,6 +1,6 @@
 import type { IChannel } from './channel.types';
 import type { IWatchHistory } from './history.types';
-import type { IVideo } from './video.types'
+import type { IVideo } from './video.types';
 
 /**
  * интерфейс пользователя
@@ -23,6 +23,13 @@ export interface IFullUser extends IUser {
 	verificationToken?: string | null;
 }
 
+export interface IVideoLikes {
+	id: string;
+	videoId: string;
+	userId: string;
+}
+
 export interface IProfileResponse extends IFullUser {
-	subscribedVideos?: IVideo[]
+	likes?: IVideoLikes[];
+	subscribedVideos?: IVideo[];
 }
