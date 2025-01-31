@@ -24,7 +24,7 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang='en'>
-			<body className={`${notoSans.className}`}>
+			<body className={`flex justify-center ${notoSans.className}`}>
 				<Providers>{children}</Providers>
 			</body>
 		</html>

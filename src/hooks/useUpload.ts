@@ -4,7 +4,6 @@ import toast from 'react-hot-toast';
 
 import { fileService } from '@/services/file.service';
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 type TUseUpload = (props: { onChange: (...event: any[]) => void; folder?: string }) => {
 	uploadFile: (e: ChangeEvent<HTMLInputElement>) => void;
 	isLoading: boolean;

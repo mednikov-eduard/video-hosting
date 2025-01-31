@@ -46,10 +46,11 @@ export function VideoItem({ video, Icon }: Props) {
 				<Link href={PAGE.VIDEO(video.publicId)}>
 					<Image
 						src={video.thumbnailUrl}
-						width={312}
-						height={171}
+						width={431}
+						height={364}
 						alt={video.title}
 						className='rounded-md'
+						quality={100}
 					/>
 				</Link>
 				<Link

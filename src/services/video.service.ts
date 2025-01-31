@@ -1,6 +1,6 @@
 import { axiosClassic } from '@/api/axios';
 
-import type { ISingleVideoResponse, IVideo } from '@/types/video.types';
+import type { ISingleVideoResponse, IVideo, IVideosPagination } from '@/types/video.types';
 
 /**
  * Класс, представляющий сервис для работы с видео.
@@ -30,7 +30,7 @@ class VideoService {
 	}
 
 	getAllVideos(searchTerm?: string | null) {
-		return axiosClassic.get(
+		return axiosClassic.get<IVideosPagination>(
 			`${this._baseUrl}`,
 			searchTerm
 				? {
