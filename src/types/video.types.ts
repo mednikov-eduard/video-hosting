@@ -1,5 +1,7 @@
 import type { IChannel } from './channel.types';
+import type { IComment } from './comment.types'
 import type { IPagination } from './pagination.types'
+import type { EnumVideoPlayerQuality } from './video-player.types'
 
 /**
  * интерфейс видео
@@ -21,6 +23,7 @@ export interface IVideo {
 	description: string;
 	thumbnailUrl: string;
 	videoFileName: string;
+	maxResolution: EnumVideoPlayerQuality
 	viewsCount: number;
 	isPublic: boolean;
 	channel: IChannel;
@@ -29,6 +32,7 @@ export interface IVideo {
 
 export interface IFullVideo extends IVideo {
 	likes: [];
+	comments: IComment[];
 }
 
 export interface ISingleVideoResponse extends IFullVideo {
@@ -38,4 +42,5 @@ export interface ISingleVideoResponse extends IFullVideo {
 
 export interface IVideosPagination extends IPagination {
 	videos: IVideo[];
+
 }

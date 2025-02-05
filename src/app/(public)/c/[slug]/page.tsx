@@ -14,7 +14,7 @@ import { channelService } from '@/services/channel.service';
 import type { IChannel } from '@/types/channel.types';
 
 const DynamicSubscribeButton = dynamicNext(
-	() => import('@/components/subscribe-button/SubscribeButton').then(mod => mod.SubscribeButton),
+	() => import('@/ui/subscribe-button/SubscribeButton').then(mod => mod.SubscribeButton),
 	{ ssr: true, loading: () => <SkeletonLoader classNames='w-36 h-10 rounded-md' /> }
 );
 

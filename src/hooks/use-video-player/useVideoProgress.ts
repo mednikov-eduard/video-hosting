@@ -2,8 +2,10 @@ import { type RefObject, useEffect, useState } from 'react';
 
 import type { HTMLCustomVideoElement } from '@/types/video-player.types';
 
-
-export function useVideoProgress(playerRef: RefObject<HTMLCustomVideoElement>) {
+export function useVideoProgress(
+	playerRef: RefObject<HTMLCustomVideoElement>,
+	bgRef: RefObject<HTMLCustomVideoElement>
+) {
 	const [currentTime, setCurrentTime] = useState(0);
 	const [videoTime, setVideoTime] = useState(0);
 	const [progress, setProgress] = useState(0);
@@ -43,7 +45,7 @@ export function useVideoProgress(playerRef: RefObject<HTMLCustomVideoElement>) {
 	return {
 		currentTime,
 		videoTime,
-		progress
-  
+		progress,
+		setCurrentTime
 	};
 }

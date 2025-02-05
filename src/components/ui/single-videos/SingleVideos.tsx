@@ -3,15 +3,17 @@
 import cn from 'clsx';
 import { useState } from 'react';
 
-import { VideoDescription } from '@/components/video-description/VideoDescription';
 
 import { SectionTitle } from '@/ui/section-title/SectionTitle';
 import { VideoActions } from '@/ui/video-actions/VideoActions';
 import { VideoChannelInfo } from '@/ui/video-channel-info/VideoChannelInfo';
 import { VideoPlayer } from '@/ui/video-player/VideoPlayer';
 
-import { SimilarVideos } from './SimilarVideos';
+import { SimilarVideos } from '../similar-videos/SimilarVideos';
+
 import type { ISingleVideoResponse } from '@/types/video.types';
+import { VideoDescription } from '../video-description/VideoDescription'
+import { Comments } from '../comments/Comments'
 
 interface Props {
 	video: ISingleVideoResponse;
@@ -21,15 +23,15 @@ export function SingleVideos({ video }: Props) {
 	const [isTheaterMode, setIsTheaterMode] = useState(false);
 
 	return (
-		<section className='grid gap-20 grid-cols-[3fr_.8fr] relative'>
+		<section className='grid gap-10 grid-cols-[3fr_.8fr] relative'>
 			<div>
-				<div className={cn( isTheaterMode ? 'absolute top-0 left-0 w-full' : 'relative mb-6')}>
+				<div className={cn(isTheaterMode ? 'absolute top-0 left-0 w-full' : 'relative mb-6')}>
 					<VideoPlayer
 						fileName={video.videoFileName}
-						isTheaterMode={isTheaterMode}
 						toggleTheaterMode={() => {
 							setIsTheaterMode(!isTheaterMode);
 						}}
+						maxResolution={video.maxResolution}
 					/>
 				</div>
 
@@ -61,6 +63,8 @@ export function SingleVideos({ video }: Props) {
 					subscribers={video.channel.subscribers.length}
 				/>
 				<VideoDescription description={video.description} />
+
+				<Comments video={video} />
 			</div>
 			{!!video.similarVideos?.length && (
 				<div

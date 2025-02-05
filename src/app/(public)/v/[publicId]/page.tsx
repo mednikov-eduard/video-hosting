@@ -1,17 +1,10 @@
 import type { Metadata } from 'next';
 
-import { VideoDescription } from '@/components/video-description/VideoDescription';
-
-import { SectionTitle } from '@/ui/section-title/SectionTitle';
-import { VideoActions } from '@/ui/video-actions/VideoActions';
-import { VideoChannelInfo } from '@/ui/video-channel-info/VideoChannelInfo';
-
 import { stripHtml } from '@/utils/strip-html';
 
-import { SimilarVideos } from './SimilarVideos';
+
 import { videoService } from '@/services/video.service';
-import { VideoPlayer } from '@/ui/video-player/VideoPlayer'
-import { SingleVideos } from './SingleVideos'
+import { SingleVideos } from '@/ui/single-videos/SingleVideos'
 
 export const revalidate = 100;
 export const dynamic = 'force-static';
@@ -44,11 +37,7 @@ export default async function Page(props: { params: tParams }) {
 	const { publicId } = await props.params;
 
 	const data = await videoService.byPublicId(publicId);
-
 	const video = data.data;
-	
 
-	return (
-		<SingleVideos video={video} />
-	);
+	return <SingleVideos video={video} />;
 }

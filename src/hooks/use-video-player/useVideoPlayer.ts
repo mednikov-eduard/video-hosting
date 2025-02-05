@@ -1,24 +1,28 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 
 import { useChangeQuality } from './useChangeQuality';
 import { useFullScreen } from './useFullScreen';
+import { useOnSeek } from './useOnSeek';
 import { usePlayPause } from './usePlayPause';
 import { useSkipTime } from './useSkipTime';
+import { useVideoHotkeys } from './useVideoHotkeys';
 import { useVideoProgress } from './useVideoProgress';
 import { useVideoVolume } from './useVideoVolume';
 import type { HTMLCustomVideoElement } from '@/types/video-player.types';
 
 interface Props {
 	fileName: string;
+	toggleTheaterMode: () => void;
 }
 
-export function useVideoPlayer({ fileName }: Props) {
+export function useVideoPlayer({ fileName, toggleTheaterMode }: Props) {
 	const playerRef = useRef<HTMLCustomVideoElement>({} as HTMLCustomVideoElement);
+	const bgRef = useRef<HTMLCustomVideoElement>({} as HTMLCustomVideoElement);
 
-	const { isPlaying, setIsPlaying, togglePlayPause } = usePlayPause(playerRef);
+	const [isLightingMode, setIsLightingMode] = useState(true);
 
-	const { currentTime, videoTime, progress } = useVideoProgress(playerRef);
-
+	const { isPlaying, setIsPlaying, togglePlayPause } = usePlayPause(playerRef, bgRef);
+	const { currentTime, videoTime, progress, setCurrentTime } = useVideoProgress(playerRef, bgRef);
 	const { quality, changeQuality } = useChangeQuality(
 		playerRef,
 		fileName,
@@ -27,13 +31,31 @@ export function useVideoPlayer({ fileName }: Props) {
 	);
 
 	const { toggleFullScreen } = useFullScreen(playerRef);
-
-	const { skipTime } = useSkipTime(playerRef);
+	const { skipTime } = useSkipTime(playerRef, bgRef);
 
 	const { volume, isMuted, changeVolume, toggleMute } = useVideoVolume(playerRef);
+	const { onSeek } = useOnSeek(bgRef, playerRef, setCurrentTime);
+
+	const fn = {
+		togglePlayPause,
+		skipTime,
+		toggleFullScreen,
+		changeQuality,
+		changeVolume,
+		toggleMute,
+		onSeek,
+		toggleLightingMode: () => setIsLightingMode(!isLightingMode)
+	};
+
+	useVideoHotkeys({
+		volume,
+		toggleTheaterMode,
+		...fn
+	});
 
 	return {
 		playerRef,
+		bgRef,
 		state: {
 			isPlaying,
 			quality,
@@ -41,15 +63,9 @@ export function useVideoPlayer({ fileName }: Props) {
 			videoTime,
 			progress,
 			volume,
-			isMuted
+			isMuted,
+			isLightingMode
 		},
-		fn: {
-			togglePlayPause,
-			skipTime,
-			toggleFullScreen,
-			changeQuality,
-			changeVolume,
-			toggleMute
-		}
+		fn
 	};
 }

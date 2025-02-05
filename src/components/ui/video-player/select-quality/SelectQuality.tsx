@@ -12,10 +12,13 @@ import type { EnumVideoPlayerQuality } from '@/types/video-player.types';
 interface Props {
 	currentValue: EnumVideoPlayerQuality;
 	onChange: (quality: EnumVideoPlayerQuality) => void;
+	maxResolution: EnumVideoPlayerQuality;
 }
 
-export function SelectQuality({ currentValue, onChange }: Props) {
+export function SelectQuality({ currentValue, onChange, maxResolution }: Props) {
 	const { ref, isShow, setIsShow } = useOutside(false);
+
+	const availableQualities = QUALITIES.slice(QUALITIES.indexOf(maxResolution));
 
 	return (
 		<div
@@ -37,7 +40,7 @@ export function SelectQuality({ currentValue, onChange }: Props) {
 						transition={{ duration: 0.3 }}
 						className='bg-black/60 py-2 px-4 rounded absolute bottom-full right-0 z-10 shadow'
 					>
-						{QUALITIES.map(quality => (
+						{availableQualities.map(quality => (
 							<li
 								key={quality}
 								className='mb-1'
@@ -46,12 +49,14 @@ export function SelectQuality({ currentValue, onChange }: Props) {
 									onClick={() => {
 										onChange(quality);
 										setIsShow(false);
+										
 									}}
+									disabled={quality === currentValue}
 									className='transition-colors hover:text-primary'
 								>
 									{quality === currentValue ? (
 										<span className='flex gap-1 items-center opacity-80'>
-											{quality} <Check size={18}/>
+											{quality} <Check size={18} />
 										</span>
 									) : (
 										quality
