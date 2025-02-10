@@ -1,7 +1,8 @@
+import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useState } from 'react';
 
-import { CommentAction } from '@/ui/comment-action/CommentAction';
 import { SectionTitle } from '@/ui/section-title/SectionTitle';
 import { VerifiedItem } from '@/ui/verified-item/VerifiedItem';
 
@@ -12,11 +13,19 @@ import { transformDate } from '@/utils/transform-date';
 
 import type { ISingleVideoResponse } from '@/types/video.types';
 
+const DynamicCommentAction = dynamic(
+	() => import('@/ui/comment-action/CommentAction').then(mod => mod.CommentAction),
+	{ ssr: false }
+);
+
 interface Props {
 	comment: ISingleVideoResponse['comments'][0];
+	refetch: () => void;
 }
 
-export function CommentItem({ comment }: Props) {
+export function CommentItem({ comment, refetch }: Props) {
+	const [text, setText] = useState(comment.text);
+
 	return (
 		<div className='flex gap-4 py-5 border-b border-b-border items-start last:border-none'>
 			{comment.user.channel ? (
@@ -49,8 +58,18 @@ export function CommentItem({ comment }: Props) {
 						{transformDate(comment?.createdAt)}
 					</div>
 				</div>
-				<div className='text-gray-200 text-sm leading-snug'>{comment.text}</div>
-				<CommentAction />
+				<div>
+					<textarea
+						className='text-gray-300 text-sm leading-snug bg-transparent resize-none border-transparent focus:border-border  '
+						value={text}
+						onChange={e => setText(e.target.value)}
+					></textarea>
+				</div>
+				<DynamicCommentAction
+					comment={comment}
+					refetch={refetch}
+					newText={text}
+				/>
 			</div>
 		</div>
 	);

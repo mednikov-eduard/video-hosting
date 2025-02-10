@@ -10,6 +10,7 @@ export interface IComment {
 	user: IUser & {
 		channel: IChannel;
 	};
+
 }
 
 export interface ICommentData {

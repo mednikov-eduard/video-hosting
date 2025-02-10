@@ -18,22 +18,22 @@ const initialState: IAuthState = {
 
 export const authSlice = createSlice({
 	name: 'auth',
-	initialState: initialState,
+	initialState,
 	reducers: {
-		setAuthData: (
+		setAuthData (
 			state,
 			action: PayloadAction<{
 				user: IUser;
 				accessToken: string;
 			}>
-		) => {
+		) {
 			state.user = action.payload.user;
 			state.isLoggedIn = true;
 			state.accessToken = action.payload.accessToken;
 			
 		},
 
-		clearAuthData: state => {
+		clearAuthData(state) {
 			state.user = null;
 			state.isLoggedIn = false;
 			state.accessToken = null;

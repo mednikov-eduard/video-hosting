@@ -1,5 +1,5 @@
-import Cookies from 'js-cookie';
 
+import Cookies from 'js-cookie';
 import { clearAuthData, setAuthData } from '@/store/reducers/auth.slice';
 
 import { axiosClassic } from '@/api/axios';
@@ -32,9 +32,10 @@ class AuthService {
 	}
 
 	async initializeAuth() {
-		const accessToken = Cookies.get(EnumTokens.ACCESS_TOKEN);
 
-		if (accessToken) return;
+		const initialStore = store.getState().auth;
+		if (initialStore.user) return;
+
 
 		try {
 			await this.getNewTokens();
@@ -45,10 +46,12 @@ class AuthService {
 	}
 
 	async getNewTokens() {
+
 		const response = await axiosClassic.post<IAuthResponse>(`${this._auth}/access-token`);
 
 		if (response.data.accessToken) {
 			this._saveTokenStorage(response.data.accessToken);
+			
 			store.dispatch(setAuthData(response.data));
 		}
 

@@ -3,7 +3,7 @@ import { axiosClassic, instance } from '@/api/axios';
 import type { IComment, ICommentData } from '@/types/comment.types';
 
 class CommentService {
-	private _baseUrl = '/comment';
+	private _baseUrl = '/comments';
 
 	async byVideoPublicId(publicId?: string | null) {
 		const { data } = await axiosClassic.get<IComment[]>(`${this._baseUrl}/by-video/${publicId}`);
@@ -19,7 +19,7 @@ class CommentService {
 	}
 
 	delete(id: string) {
-		return instance.put<IComment>(`${this._baseUrl}/${id}`);
+		return instance.delete<IComment>(`${this._baseUrl}/${id}`);
 	}
 }
 
