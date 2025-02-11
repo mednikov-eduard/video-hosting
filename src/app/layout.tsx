@@ -8,6 +8,8 @@ import { SITE_URL } from '@/constants/constants'
 
 const notoSans = Noto_Sans({ subsets: ['latin'] });
 
+export const fetchCache = 'default-cache';
+
 export const metadata: Metadata = {
 	title: {
 		absolute: 'Youtube',

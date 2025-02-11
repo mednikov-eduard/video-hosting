@@ -1,5 +1,5 @@
-
 import Cookies from 'js-cookie';
+
 import { clearAuthData, setAuthData } from '@/store/reducers/auth.slice';
 
 import { axiosClassic } from '@/api/axios';
@@ -8,6 +8,7 @@ import type { IAuthData } from '@/app/auth/auth-form.types';
 import { store } from '@/store';
 import { EnumTokens } from '@/types/auth.types';
 import type { IUser } from '@/types/user.types';
+import { API_URL } from '@/constants/constants'
 
 export interface IAuthResponse {
 	user: IUser;
@@ -32,10 +33,8 @@ class AuthService {
 	}
 
 	async initializeAuth() {
-
 		const initialStore = store.getState().auth;
 		if (initialStore.user) return;
-
 
 		try {
 			await this.getNewTokens();
@@ -46,35 +45,18 @@ class AuthService {
 	}
 
 	async getNewTokens() {
-
 		const response = await axiosClassic.post<IAuthResponse>(`${this._auth}/access-token`);
 
 		if (response.data.accessToken) {
 			this._saveTokenStorage(response.data.accessToken);
-			
+
 			store.dispatch(setAuthData(response.data));
 		}
 
 		return response;
 	}
 
-	async getNewTokensByRefresh(refreshToken: string) {
-		const response = await axiosClassic.post<IAuthResponse>(
-			`${this._auth}/access-token`,
-			{},
-			{
-				headers: {
-					Cookies: `refreshToken=${refreshToken}`
-				}
-			}
-		);
-
-		if (response.data.accessToken) {
-			this._saveTokenStorage(response.data.accessToken);
-		}
-
-		return response.data;
-	}
+	
 
 	async logout() {
 		const response = await axiosClassic.post<boolean>(`${this._auth}/logout`);

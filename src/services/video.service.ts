@@ -19,14 +19,18 @@ class VideoService {
 	 * Получает список видео про игры.
 	 */
 	getVideoGames() {
-		return axiosClassic.get(`${this._baseUrl}/games`);
+		return axiosClassic.get<IVideo[]>(`${this._baseUrl}/games`);
 	}
 
 	/**
 	 * Получает список видео для раздела "Explore".
 	 */
-	getExploreVideos() {
-		return axiosClassic.get(`${this._baseUrl}/explore`);
+	getExploreVideos(userId?: number) {
+		return axiosClassic.get<IVideosPagination>(`${this._baseUrl}/explore`, {
+			params: {
+				userId
+			}
+		});
 	}
 
 	getAllVideos(searchTerm?: string | null) {
@@ -43,8 +47,8 @@ class VideoService {
 	}
 
 	byPublicId(id?: string | null) {
-			return axiosClassic.get<ISingleVideoResponse>(`${this._baseUrl}/by-publicId/${id}`);
-		}
+		return axiosClassic.get<ISingleVideoResponse>(`${this._baseUrl}/by-publicId/${id}`);
+	}
 }
 
 export const videoService = new VideoService();

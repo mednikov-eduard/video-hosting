@@ -43,7 +43,7 @@ export function useAuthForm(type: 'login' | 'register', reset: UseFormReset<IAut
 
 				return 'Success login!';
 			},
-			error: (e: unknown) => {
+			error: (e: any) => {
 				if (axios.isAxiosError(e)) {
 					return e.response?.data?.message;
 				}

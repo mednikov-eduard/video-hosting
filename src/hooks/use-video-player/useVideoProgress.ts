@@ -14,10 +14,10 @@ export function useVideoProgress(
 		const originalTime = playerRef.current?.duration;
 
 		if (originalTime && playerRef.current) {
-			setVideoTime(originalTime);
-
+			
 			const currentTime = playerRef.current.currentTime;
-
+			
+			setVideoTime(originalTime);
 			setCurrentTime(currentTime);
 			setProgress((currentTime / originalTime) * 100);
 		}

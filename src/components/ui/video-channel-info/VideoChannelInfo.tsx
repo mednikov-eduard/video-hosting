@@ -13,7 +13,7 @@ import { SectionTitle } from '../section-title/SectionTitle';
 
 const DynamicSubscribeButton = dynamicNext(
 	() => import('@/ui/subscribe-button/SubscribeButton').then(mod => mod.SubscribeButton),
-	{ ssr: true, loading: () => <SkeletonLoader classNames='w-36 h-10 rounded-md' /> }
+	{ ssr: false, loading: () => <SkeletonLoader classNames='w-36 h-10 rounded-md' /> }
 );
 
 interface Props {

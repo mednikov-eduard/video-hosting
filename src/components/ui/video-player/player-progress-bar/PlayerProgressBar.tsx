@@ -1,6 +1,5 @@
 'use client';
 
-import { hover } from 'framer-motion';
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
 import Tooltip from 'rc-tooltip';

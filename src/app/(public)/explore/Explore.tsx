@@ -7,13 +7,17 @@ import { SectionTitle } from '@/ui/section-title/SectionTitle';
 import { SkeletonLoader } from '@/ui/skeleton-loader/SkeletonLoader';
 import { VideoItem } from '@/ui/video-item/VideoItem';
 
+import { useAuth } from '@/hooks/useAuth';
+
 import { videoService } from '@/services/video.service';
 import type { IVideo } from '@/types/video.types';
 
 export function Explore() {
+	const { user } = useAuth();
+
 	const { data, isLoading } = useQuery({
 		queryKey: ['explore'],
-		queryFn: () => videoService.getExploreVideos()
+		queryFn: () => videoService.getExploreVideos(user?.id)
 	});
 
 	return (

@@ -11,7 +11,6 @@ import { videoService } from '@/services/video.service';
 import type { IVideo } from '@/types/video.types';
 
 export const revalidate = 100;
-export const dynamic = 'force-static';
 
 export const metadata: Metadata = {
 	title: 'Youtube 2',
@@ -26,7 +25,7 @@ export const metadata: Metadata = {
 	}
 };
 
-export default async function Home() {
+export default async function Page() {
 	const data = await videoService.getTrendingVideos();
 
 	const trendingVideos = data.data;
