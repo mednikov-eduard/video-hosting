@@ -20,6 +20,7 @@ interface Props {
 export function VideoPlayer({ fileName, toggleTheaterMode, maxResolution }: Props) {
 	const { fn, playerRef, bgRef, state } = useVideoPlayer({ fileName, toggleTheaterMode });
 
+
 	return (
 		<div className='relative rounded-2xl mb-5'>
 			{state.isLightingMode && (

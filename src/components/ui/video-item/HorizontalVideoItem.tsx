@@ -1,5 +1,5 @@
 import * as m from 'framer-motion/m';
-import { type LucideIcon } from 'lucide-react';
+import parse from 'html-react-parser';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -14,24 +14,26 @@ import type { IVideo } from '@/types/video.types';
 
 interface Props {
 	video: IVideo;
-	Icon?: LucideIcon;
+	itemDelay: number
 }
 
-export function VideoItem({ video, Icon }: Props) {
+export function HorizontalVideoItem({ video, itemDelay }: Props) {
 	return (
 		<m.article
 			initial={{
-				scale: 0.5,
+				x: -10,
 				opacity: 0,
 				borderRadius: 6
 			}}
 			animate={{
-				scale: 1,
-				opacity: 1
+				x: 0,
+				opacity: 1,
+				transition: {
+					delay: itemDelay
+				}
 			}}
 			whileHover={{
-				scale: 1.1,
-				y: -5,
+				scale: 1.01,
 				boxShadow: '0px 0px 25px rgba(255, 255, 255, 0.137)'
 			}}
 			transition={{
@@ -41,54 +43,42 @@ export function VideoItem({ video, Icon }: Props) {
 				// демпфирование
 				damping: 30
 			}}
+			className='  mb-5'
 		>
-			<div className='relative mb-1.5'>
-				<Link href={PAGE.VIDEO(video.publicId)}>
+			<div className='flex items-start gap-4 '>
+				<Link
+					href={PAGE.VIDEO(video.publicId)}
+					className='shrink-0'
+				>
 					<Image
 						src={video.thumbnailUrl}
-						width={431}
-						height={364}
+						width={240}
+						height={149}
 						alt={video.title}
 						className='rounded-md'
 						quality={100}
 					/>
 				</Link>
-				<Link
-					href={PAGE.CHANNEL(video.channel.slug)}
-					className='absolute left-2 bottom-2'
-				>
-					<Image
-						src={video.channel.avatarUrl}
-						width={35}
-						height={35}
-						alt={video?.channel?.user?.name || ''}
-						className='rounded-full shadow'
-					/>
-				</Link>
-			</div>
-			<div className='p-1'>
-				<div className='mb-1.5 flex items-center justify-between'>
-					<div className='flex items-center gap-0.5'>
-						{Icon && (
-							<Icon
-								className='text-red-600'
-								size={20}
-							/>
-						)}
+				<div className='p-1'>
+					<div className='mb-1 text-lg'>
+						<VideoItemTitle
+							publicId={video.publicId}
+							title={video.title}
+						/>
+					</div>
+					<div className='flex items-center gap-2 mb-1'>
+						<VideoChannelName
+							channel={video.channel}
+							spanClassName='text-base mr-0.5'
+						/>
+						<span>•</span>
 						<span className='text-gray-400 text-sm'>{transformCount(video.viewsCount)} views</span>
+						<span>•</span>
+						<span className='text-gray-400 text-sm'>{transformDate(video.createdAt)}</span>
 					</div>
 					<div>
-						<span className='text-gray-400 text-xs'>{transformDate(video.createdAt)}</span>
+						<span className='line-clamp-2'>{parse(video.description)}</span>
 					</div>
-				</div>
-				<div className='mb-1'>
-					<VideoItemTitle
-						publicId={video.publicId}
-						title={video.title}
-					/>
-				</div>
-				<div>
-					<VideoChannelName channel={video.channel} />
 				</div>
 			</div>
 		</m.article>

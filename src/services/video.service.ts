@@ -1,4 +1,4 @@
-import { axiosClassic } from '@/api/axios';
+import { axiosClassic, instance } from '@/api/axios';
 
 import type { ISingleVideoResponse, IVideo, IVideosPagination } from '@/types/video.types';
 
@@ -19,7 +19,7 @@ class VideoService {
 	 * Получает список видео про игры.
 	 */
 	getVideoGames() {
-		return axiosClassic.get<IVideo[]>(`${this._baseUrl}/games`);
+		return axiosClassic.get<IVideosPagination>(`${this._baseUrl}/games`);
 	}
 
 	/**
@@ -32,6 +32,8 @@ class VideoService {
 			}
 		});
 	}
+
+	
 
 	getAllVideos(searchTerm?: string | null) {
 		return axiosClassic.get<IVideosPagination>(
@@ -48,6 +50,10 @@ class VideoService {
 
 	byPublicId(id?: string | null) {
 		return axiosClassic.get<ISingleVideoResponse>(`${this._baseUrl}/by-publicId/${id}`);
+	}
+
+	updateViews(publicId: string) {
+		return instance.put(`${this._baseUrl}/update-views-count/${publicId}`);
 	}
 }
 

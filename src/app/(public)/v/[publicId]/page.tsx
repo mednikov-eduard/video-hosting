@@ -37,5 +37,6 @@ export default async function Page({ params }: TPagePublicIdProp) {
 	const data = await videoService.byPublicId(publicId);
 	const video = data.data;
 
+
 	return <SingleVideos video={video} />;
 }

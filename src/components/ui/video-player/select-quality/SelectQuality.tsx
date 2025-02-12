@@ -35,10 +35,10 @@ export function SelectQuality({ currentValue, onChange, maxResolution }: Props) 
 				{isShow && (
 					<m.ul
 						initial={{ opacity: 0, y: 10 }}
-						animate={{ opacity: 1, y: -20 }}
+						animate={{ opacity: 1, y: -10 }}
 						exit={{ opacity: 0, y: 10 }}
 						transition={{ duration: 0.3 }}
-						className='bg-black/60 py-2 px-4 rounded absolute bottom-full right-0 z-10 shadow'
+						className='bg-black/80 py-2 px-4 rounded absolute bottom-full right-0 z-10 shadow'
 					>
 						{availableQualities.map(quality => (
 							<li

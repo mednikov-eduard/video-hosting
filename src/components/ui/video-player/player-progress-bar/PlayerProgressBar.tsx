@@ -1,3 +1,5 @@
+/* TODO: Переписать, как будет время */
+
 'use client';
 
 import Slider from 'rc-slider';

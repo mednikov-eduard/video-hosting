@@ -38,7 +38,7 @@ export function AddCommentForm({ videoId, refetch }: Props) {
 
 	const { isLoggedIn } = useAuth();
 
-	if(!isLoggedIn) return null;
+	if (!isLoggedIn) return null;
 
 	return (
 		<div className='mb-4'>
@@ -56,7 +56,7 @@ export function AddCommentForm({ videoId, refetch }: Props) {
 					error={errors.text?.message}
 				/>
 				<button
-					className='bg-border font-medium rounded h-max py-2.5 '
+					className='bg-border font-medium rounded h-max py-2.5 opacity-80 hover:opacity-100 transition-opacity'
 					disabled={isPending}
 				>
 					{isPending ? 'Adding...' : 'Add'}

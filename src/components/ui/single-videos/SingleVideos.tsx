@@ -1,19 +1,24 @@
+/* TODO: изменить способ работы режима театра */
+
 'use client';
 
 import cn from 'clsx';
 import { useState } from 'react';
-
 
 import { SectionTitle } from '@/ui/section-title/SectionTitle';
 import { VideoActions } from '@/ui/video-actions/VideoActions';
 import { VideoChannelInfo } from '@/ui/video-channel-info/VideoChannelInfo';
 import { VideoPlayer } from '@/ui/video-player/VideoPlayer';
 
+import { useUpdateViews } from '@/hooks/useUpdateViews';
+
+import { Comments } from '../comments/Comments';
 import { SimilarVideos } from '../similar-videos/SimilarVideos';
+import { VideoDescription } from '../video-description/VideoDescription';
 
 import type { ISingleVideoResponse } from '@/types/video.types';
-import { VideoDescription } from '../video-description/VideoDescription'
-import { Comments } from '../comments/Comments'
+
+/* TODO: изменить способ работы режима театра */
 
 interface Props {
 	video: ISingleVideoResponse;
@@ -22,10 +27,12 @@ interface Props {
 export function SingleVideos({ video }: Props) {
 	const [isTheaterMode, setIsTheaterMode] = useState(false);
 
+	useUpdateViews({ video });
+
 	return (
 		<section className='grid gap-10 grid-cols-[3fr_.8fr] relative'>
 			<div>
-				<div className={cn(isTheaterMode ? 'absolute top-0 left-0 w-full' : 'relative mb-6')}>
+				<div className={cn(isTheaterMode ? 'absolute top-0 left-0 w-full ' : 'relative mb-6')}>
 					<VideoPlayer
 						fileName={video.videoFileName}
 						toggleTheaterMode={() => {
