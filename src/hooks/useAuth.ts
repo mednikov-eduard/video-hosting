@@ -1,6 +1,5 @@
-import { useTypedSelector } from '@/store'
+import { useTypedSelector } from '@/store';
 
 export function useAuth() {
-	
-	return useTypedSelector(state => state.auth)
+	return useTypedSelector(state => state.auth);
 }

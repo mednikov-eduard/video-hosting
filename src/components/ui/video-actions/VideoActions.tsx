@@ -1,21 +1,17 @@
 'use client';
 
 import { useMutation } from '@tanstack/react-query';
-import { Heart, ListPlus } from 'lucide-react';
-import { useEffect, useState } from 'react';
-import { startTransition } from 'react';
-import toast from 'react-hot-toast';
+import { Heart } from 'lucide-react';
+import { startTransition, useEffect, useState } from 'react';
 
 import { COLORS } from '@/constants/colors.constants';
 
 import { useProfile } from '@/hooks/useProfile';
-import { useUserPlaylist } from '@/hooks/useUserPlaylist';
 
 import { transformCount } from '@/utils/transform-count';
 
-import { playlistService } from '@/services/playlists.service';
-import { userService } from '@/services/user.service';
-import { SaveToPlaylist } from './save-to-playlist/SaveToPlaylist'
+import { SaveToPlaylist } from './save-to-playlist/SaveToPlaylist';
+import { userService } from '@/services/studio/user.service';
 
 interface Props {
 	likesCount: number;
@@ -62,8 +58,6 @@ export function VideoActions({ likesCount, videoId }: Props) {
 			refetch();
 		}
 	});
-
-	
 
 	return (
 		<div className='flex items-center gap-7'>

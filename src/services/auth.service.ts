@@ -1,14 +1,12 @@
 import Cookies from 'js-cookie';
 
-import { clearAuthData, setAuthData } from '@/store/reducers/auth.slice';
-
 import { axiosClassic } from '@/api/axios';
 
 import type { IAuthData } from '@/app/auth/auth-form.types';
 import { store } from '@/store';
+import { clearAuthData, setAuthData } from '@/store/reducers/auth.slice';
 import { EnumTokens } from '@/types/auth.types';
 import type { IUser } from '@/types/user.types';
-import { API_URL } from '@/constants/constants'
 
 export interface IAuthResponse {
 	user: IUser;
@@ -55,8 +53,6 @@ class AuthService {
 
 		return response;
 	}
-
-	
 
 	async logout() {
 		const response = await axiosClassic.post<boolean>(`${this._auth}/logout`);
