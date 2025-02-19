@@ -26,6 +26,7 @@ export interface IFullUser extends IUser {
 export interface IVideoLikes {
 	id: string;
 	video: IFullVideo;
+	videoId: string;
 	userId: string;
 }
 

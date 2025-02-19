@@ -38,7 +38,7 @@ export function SelectQuality({ currentValue, onChange, maxResolution }: Props) 
 						animate={{ opacity: 1, y: -10 }}
 						exit={{ opacity: 0, y: 10 }}
 						transition={{ duration: 0.3 }}
-						className='bg-black/80 py-2 px-4 rounded absolute bottom-full right-0 z-10 shadow'
+						className='bg-bg/80 py-2 px-3 rounded absolute bottom-full right-0 z-10 shadow w-max max-w-32'
 					>
 						{availableQualities.map(quality => (
 							<li
