@@ -2,6 +2,8 @@ import { useMutation } from '@tanstack/react-query';
 import { type ChangeEvent, useCallback } from 'react';
 import toast from 'react-hot-toast';
 
+import { validateFileSize } from '@/ui/validate-file-size/validate-file-size';
+
 import { fileService } from '@/services/studio/file.service';
 import type { IFileResponse } from '@/types/file.types';
 
@@ -10,6 +12,7 @@ interface Props {
 	onChange?: (...event: any[]) => void;
 	onSuccess?: (data: IFileResponse[]) => void;
 	onError?: () => void;
+	maxFileSize?: number;
 }
 
 type TUseUpload = (props: Props) => {
@@ -17,7 +20,7 @@ type TUseUpload = (props: Props) => {
 	isLoading: boolean;
 };
 
-export const useUpload: TUseUpload = ({ onChange, folder, onError, onSuccess }) => {
+export const useUpload: TUseUpload = ({ onChange, folder, onError, onSuccess, maxFileSize }) => {
 	const { mutate, isPending } = useMutation({
 		mutationKey: ['upload file'],
 		mutationFn: (data: FormData) => fileService.uploadFile(data, folder),
@@ -36,13 +39,16 @@ export const useUpload: TUseUpload = ({ onChange, folder, onError, onSuccess }) 
 			const files = e.target.files;
 			if (!files) return;
 
+			const file = files[0];
+			if (!validateFileSize(file, maxFileSize)) return;
+
 			const formData = new FormData();
 
-			formData.append('file', files[0]);
+			formData.append('file', file);
 
 			mutate(formData);
 		},
-		[mutate]
+		[maxFileSize, mutate]
 	);
 
 	return {

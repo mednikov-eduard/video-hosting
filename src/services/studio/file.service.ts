@@ -1,5 +1,5 @@
 import { instance } from '@/api/axios';
-import type { IFileResponse } from '@/types/file.types'
+import type { IFileResponse, IProgressProcessingResponse } from '@/types/file.types'
 
 class FileService {
 	private _baseUrl = '/upload-file';
@@ -18,7 +18,7 @@ class FileService {
 	}
 
 	getProcessingStatus(fileName: string) {
-		return instance.get<number>(`${this._baseUrl}/status/${fileName}`);
+		return instance.get<IProgressProcessingResponse>(`${this._baseUrl}/status/${fileName}`);
 	}
 }
 
