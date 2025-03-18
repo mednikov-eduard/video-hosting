@@ -89,7 +89,8 @@ export function SettingsForm() {
 									value={value}
 									error={error}
 									folder='banners'
-									aspectRation='16:9'
+									
+									sizePreview={[446, 250]}
 									overlay='/overlay.png'
 								/>
 							)}

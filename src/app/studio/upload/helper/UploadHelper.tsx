@@ -18,8 +18,6 @@ export function UploadVideoForm() {
 
 	const [isReadyToPublish, setIsReadyToPublish] = useState(false);
 
-	const isPending = false;
-
 	return (
 		<div className='absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50'>
 			<m.div
@@ -41,10 +39,11 @@ export function UploadVideoForm() {
 						Upload a video
 					</SectionTitle>
 
-					<DragAndDropVideo reset={form.reset} />
+					{!fileName && <DragAndDropVideo reset={form.reset} />}
 
 					<ProgressVideoProcessing
 						fileName={fileName}
+						isReadyToPublish={isReadyToPublish}
 						setIsReadyToPublish={setIsReadyToPublish}
 					/>
 
