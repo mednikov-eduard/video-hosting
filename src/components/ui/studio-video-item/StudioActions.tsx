@@ -30,36 +30,28 @@ export function StudioActions({ video }: Props) {
 	});
 
 	const handleDelete = () => {
-		toast(
-			(t: Toast) => (
-				<div>
-					<p>Are you sure you want to delete this video?</p>
-					<div className='flex justify-end gap-4 mt-2'>
-						<button
-							onClick={() => {
-								deleteVideo();
-								toast.dismiss(t.id);
-							}}
-							className='text-red-600'
-						>
-							Delete
-						</button>
-						<button
-							onClick={() => toast.dismiss(t.id)}
-							className='text-gray-400'
-						>
-							Cancel
-						</button>
-					</div>
+		toast((t: Toast) => (
+			<div>
+				<p>Are you sure you want to delete this video?</p>
+				<div className='flex justify-end gap-4 mt-2'>
+					<button
+						onClick={() => {
+							deleteVideo();
+							toast.dismiss(t.id);
+						}}
+						className='text-red-600'
+					>
+						Delete
+					</button>
+					<button
+						onClick={() => toast.dismiss(t.id)}
+						className='text-gray-400'
+					>
+						Cancel
+					</button>
 				</div>
-			),
-			{
-				style: {
-					backgroundColor: '#191B28',
-					color: '#fff'
-				}
-			}
-		);
+			</div>
+		));
 	};
 
 	return (

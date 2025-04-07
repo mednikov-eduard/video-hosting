@@ -1,23 +1,23 @@
+import dayjs from 'dayjs';
 import parse from 'html-react-parser';
 import Image from 'next/image';
 import Link from 'next/link';
 
 import { PAGE } from '@/config/public-page.config';
+import { STUDIO_PAGE } from '@/config/studio-page.config';
 
+import { processHtmlContent } from '@/utils/process-html-content';
+
+import { StudioActions } from './StudioActions';
 import type { IFullVideo } from '@/types/video.types';
-import { STUDIO_PAGE } from '@/config/studio-page.config'
-import { processHtmlContent } from '@/utils/process-html-content'
-import dayjs from 'dayjs'
-import { StudioActions } from './StudioActions'
 
 interface Props {
 	video: IFullVideo;
-	itemDelay?: number;
 }
 
-export function StudioVideoItem({ video, itemDelay }: Props) {
-	const { initialContent } = processHtmlContent(video.description, 1) 
-	
+export function StudioVideoItem({ video }: Props) {
+	const { initialContent } = processHtmlContent(video.description, 1);
+
 	return (
 		<div className='grid grid-cols-[.49fr_1.1fr_0.3fr_0.3fr_0.3fr_0.2fr_0.5fr] gap-6 mb-6 border-b border-b-border pb-6 last:border-none'>
 			<Link
@@ -56,16 +56,15 @@ export function StudioVideoItem({ video, itemDelay }: Props) {
 
 			<div>
 				<div className='text-gray-400'>
-					{video.comments.length.toLocaleString('ru-RU')} comments
+					{video.comments?.length.toLocaleString('ru-RU')} comments
 				</div>
 			</div>
 
 			<div>
-				<div className='text-gray-400'>{video.likes.length.toLocaleString('ru-RU')} likes</div>
+				<div className='text-gray-400'>{video.likes?.length.toLocaleString('ru-RU')} likes</div>
 			</div>
 
 			<StudioActions video={video} />
 		</div>
-	)
+	);
 }
-

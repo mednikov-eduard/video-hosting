@@ -3,15 +3,12 @@
 import { useInfiniteQuery } from '@tanstack/react-query';
 
 import { SkeletonLoader } from '@/ui/skeleton-loader/SkeletonLoader';
-
-import { useAuth } from '@/hooks/useAuth';
 import { useEffectScroll } from '@/hooks/useEffectScroll';
 
 import { studioVideoService } from '@/services/studio/studio-video.service';
 import { StudioVideoItem } from '@/ui/studio-video-item/StudioVideoItem'
 
 export function StudioVideoList() {
-	const { user } = useAuth();
 
 	const { data, isLoading, isFetchingNextPage, fetchNextPage, hasNextPage } = useInfiniteQuery({
 		queryKey: ['explore'],
