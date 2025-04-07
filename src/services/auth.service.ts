@@ -31,14 +31,13 @@ class AuthService {
 	}
 
 	async initializeAuth() {
-		const initialStore = store.getState().auth;
-		if (initialStore.user) return;
+		const initialStore = store.getState().auth
+		if (initialStore.user) return
 
 		try {
-			await this.getNewTokens();
-		} catch (e) {
-			store.dispatch(clearAuthData());
-			console.log(e);
+			await this.getNewTokens()
+		} catch (error) {
+			store.dispatch(clearAuthData())
 		}
 	}
 

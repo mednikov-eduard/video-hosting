@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 
 import { NO_INDEX_PAGE } from '@/constants/seo.constants'
+import { StudioVideoListPage } from './StudioVideoListPage'
 
 export const metadata: Metadata = {
 	title: 'Studio',
@@ -8,6 +9,6 @@ export const metadata: Metadata = {
 }
 
 export default function Page() {
-	return <div>Studio</div>
+	return <StudioVideoListPage />
 }
 

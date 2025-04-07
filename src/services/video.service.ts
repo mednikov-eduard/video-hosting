@@ -1,5 +1,6 @@
 import { axiosClassic, instance } from '@/api/axios';
 
+import type { IPaginationParams } from '@/types/pagination.types';
 import type { ISingleVideoResponse, IVideo, IVideosPagination } from '@/types/video.types';
 
 /**
@@ -25,15 +26,20 @@ class VideoService {
 	/**
 	 * Получает список видео для раздела "Explore".
 	 */
-	getExploreVideos(userId?: number) {
-		return axiosClassic.get<IVideosPagination>(`${this._baseUrl}/explore`, {
-			params: {
-				userId
-			}
+	async getExploreVideos(userId?: number, params?: IPaginationParams, excludeIds?: string[]) {
+		const excludeIdsString = excludeIds?.join(',') || '';
+		const { data } = await axiosClassic.get<IVideosPagination>(`${this._baseUrl}/explore`, {
+			params: userId
+				? {
+						userId,
+						...params,
+						excludeIds: excludeIdsString
+					}
+				: params
 		});
-	}
 
-	
+		return data;
+	}
 
 	getAllVideos(searchTerm?: string | null) {
 		return axiosClassic.get<IVideosPagination>(

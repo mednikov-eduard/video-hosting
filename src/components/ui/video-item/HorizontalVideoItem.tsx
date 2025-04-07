@@ -14,7 +14,7 @@ import type { IVideo } from '@/types/video.types';
 
 interface Props {
 	video: IVideo;
-	itemDelay: number
+	itemDelay?: number
 }
 
 export function HorizontalVideoItem({ video, itemDelay }: Props) {

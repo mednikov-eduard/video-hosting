@@ -1,38 +1,30 @@
 'use client';
 
 import { useInfiniteQuery } from '@tanstack/react-query';
-import { Compass } from 'lucide-react';
-import { useEffect } from 'react';
 
-import { SectionTitle } from '@/ui/section-title/SectionTitle';
 import { SkeletonLoader } from '@/ui/skeleton-loader/SkeletonLoader';
-import { VideoItem } from '@/ui/video-item/VideoItem';
 
 import { useAuth } from '@/hooks/useAuth';
+import { useEffectScroll } from '@/hooks/useEffectScroll';
 
-import { videoService } from '@/services/video.service';
-import { useEffectScroll } from '@/hooks/useEffectScroll'
+import { studioVideoService } from '@/services/studio/studio-video.service';
+import { StudioVideoItem } from '@/ui/studio-video-item/StudioVideoItem'
 
-export function Explore() {
+export function StudioVideoList() {
 	const { user } = useAuth();
 
 	const { data, isLoading, isFetchingNextPage, fetchNextPage, hasNextPage } = useInfiniteQuery({
 		queryKey: ['explore'],
 		queryFn: ({ pageParam }) =>
-			videoService.getExploreVideos(
-				user?.id,
-				{
-					page: pageParam.page,
-					limit: 12
-				},
-				pageParam.excludeIds
-			),
-		initialPageParam: { page: 1, excludeIds: [] as string[] },
-		getNextPageParam: (lastPage, allPages) => {
+			studioVideoService.getAllVideos({
+				page: pageParam.page,
+				limit: 8
+			}),
+		initialPageParam: { page: 1 },
+		getNextPageParam: lastPage => {
 			const { page, totalPages } = lastPage;
-			const allVideoIds = allPages.flatMap(page => page.videos.map(video => video.id));
 
-			return page < totalPages ? { page: page + 1, excludeIds: allVideoIds } : undefined;
+			return page < totalPages ? { page: page + 1 } : undefined;
 		}
 	});
 
@@ -45,7 +37,7 @@ export function Explore() {
 	const allVideos = data?.pages.flatMap(page => page.videos) || [];
 
 	return (
-		<section className='grid-6-cols pb-5'>
+		<section className='pb-5'>
 			{isLoading && !allVideos.length ? (
 				<SkeletonLoader
 					count={6}
@@ -53,7 +45,7 @@ export function Explore() {
 				/>
 			) : (
 				allVideos.map(video => (
-					<VideoItem
+					<StudioVideoItem
 						key={video.id}
 						video={video}
 					/>

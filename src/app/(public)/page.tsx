@@ -6,7 +6,7 @@ import { VideoItem } from '@/ui/video-item/VideoItem';
 
 import { PAGE } from '@/config/public-page.config';
 
-import { Explore } from './explore/Explore';
+import { ExploreSection } from './explore/ExploreSection';
 import { videoService } from '@/services/video.service';
 import type { IVideo } from '@/types/video.types';
 
@@ -46,7 +46,7 @@ export default async function Page() {
 					</div>
 				</section>
 			)}
-			<Explore />
+			<ExploreSection />
 		</section>
 	);
 }
