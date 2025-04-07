@@ -6,10 +6,10 @@ import Link from 'next/link';
 import { type Toast, toast } from 'react-hot-toast';
 
 import { PAGE } from '@/config/public-page.config';
+import { STUDIO_PAGE } from '@/config/studio-page.config';
 
 import { studioVideoService } from '@/services/studio/studio-video.service';
 import type { IVideo } from '@/types/video.types';
-import { STUDIO_PAGE } from '@/config/studio-page.config'
 
 interface Props {
 	video: IVideo;
@@ -30,28 +30,36 @@ export function StudioActions({ video }: Props) {
 	});
 
 	const handleDelete = () => {
-		toast((t: Toast) => (
-			<div>
-				<p>Are you sure you want to delete this video?</p>
-				<div className='flex justify-end gap-4 mt-2'>
-					<button
-						onClick={() => {
-							deleteVideo();
-							toast.dismiss(t.id);
-						}}
-						className='text-red-600'
-					>
-						Delete
-					</button>
-					<button
-						onClick={() => toast.dismiss(t.id)}
-						className='text-gray-400'
-					>
-						Cancel
-					</button>
+		toast(
+			(t: Toast) => (
+				<div>
+					<p>Are you sure you want to delete this video?</p>
+					<div className='flex justify-end gap-4 mt-2'>
+						<button
+							onClick={() => {
+								deleteVideo();
+								toast.dismiss(t.id);
+							}}
+							className='text-red-600'
+						>
+							Delete
+						</button>
+						<button
+							onClick={() => toast.dismiss(t.id)}
+							className='text-gray-400'
+						>
+							Cancel
+						</button>
+					</div>
 				</div>
-			</div>
-		));
+			),
+			{
+				style: {
+					backgroundColor: '#191B28',
+					color: '#fff'
+				}
+			}
+		);
 	};
 
 	return (
