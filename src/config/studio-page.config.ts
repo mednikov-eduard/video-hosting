@@ -1,8 +1,8 @@
 class StudioPageConfig {
-	HOME = '/studio'
-	SETTINGS = `${this.HOME}/settings`
+	HOME = '/studio';
+	SETTINGS = `${this.HOME}/settings`;
 
-	UPLOAD_VIDEO = `${this.HOME}/upload`
+	UPLOAD_VIDEO = `${this.HOME}/upload`;
 
 	/**
 	 * путь к странице изменения видео
@@ -10,8 +10,8 @@ class StudioPageConfig {
 	 * @returns путь к странице видео
 	 */
 	EDIT_VIDEO(path: string) {
-		return `edit/v/${path}`
+		return `${this.HOME}/edit/v/${path}`;
 	}
 }
 
-export const STUDIO_PAGE = new StudioPageConfig()
+export const STUDIO_PAGE = new StudioPageConfig();

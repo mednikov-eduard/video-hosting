@@ -4,10 +4,10 @@ import * as m from 'framer-motion/m';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 
+import { CreateVideoFrom } from '@/ui/create-video-from/CreateVideoFrom';
 import { DragAndDropVideo } from '@/ui/drag-and-drop/DragAndDropVideo';
 import { ProgressVideoProcessing } from '@/ui/progress-video-processing/ProgressVideoProcessing';
 import { SectionTitle } from '@/ui/section-title/SectionTitle';
-import { VideoForm } from '@/ui/video-form/VideoForm';
 
 import type { IVideoFormData } from '@/types/studio-video.types';
 
@@ -48,7 +48,7 @@ export function UploadVideoForm() {
 					/>
 
 					{!!fileName && (
-						<VideoForm
+						<CreateVideoFrom
 							form={form}
 							isReadyToPublish={isReadyToPublish}
 						/>

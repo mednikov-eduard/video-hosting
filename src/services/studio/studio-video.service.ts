@@ -2,7 +2,7 @@ import { instance } from '@/api/axios';
 
 import type { IPaginationParams } from '@/types/pagination.types';
 import type { IVideoFormData } from '@/types/studio-video.types';
-import type { IVideo, IVideosPagination } from '@/types/video.types';
+import type { IStudioVideoResponse, IVideosPagination } from '@/types/video.types';
 
 /**
  * Класс, представляющий сервис для работы с видео.
@@ -18,7 +18,7 @@ class VideoService {
 	}
 
 	byId(id: string) {
-		return instance.get<IVideo>(`${this._baseUrl}/${id}`);
+		return instance.get<IStudioVideoResponse>(`${this._baseUrl}/${id}`);
 	}
 
 	create(dto: IVideoFormData) {

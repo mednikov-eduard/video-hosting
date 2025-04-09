@@ -16,7 +16,7 @@ export function Sidebar({ toggleSidebar }: { toggleSidebar: () => void }) {
 	const pathname = usePathname();
 
 	return (
-		<aside className=' p-layout border-r border-border bg-bg whitespace-nowrap overflow-hidden'>
+		<aside className=' p-[1rem] border-r border-border bg-bg whitespace-nowrap overflow-hidden'>
 			<SidebarHeader toggleSidebar={toggleSidebar} />
 			<SidebarMenu menu={SIDEBAR_DATA} />
 			<SidebarSubscription />
