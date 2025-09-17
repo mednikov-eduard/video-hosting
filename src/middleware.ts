@@ -10,7 +10,7 @@ export async function middleware(request: NextRequest) {
 
 	const pathName = url.pathname;
 
-	if (pathName.includes(STUDIO_PAGE.HOME) || pathName.includes(PAGE.SUBSCRIPTIONS)) {
+	if (pathName.includes(STUDIO_PAGE.HOME) || pathName.includes('/my')) {
 		return protectStudio(request);
 	}
 
@@ -20,5 +20,5 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-	matcher: ['/studio/:path*', '/auth/:path*', '/subscriptions/:path*']
+	matcher: ['/studio/:path*', '/auth/:path*', '/my/:path*']
 };

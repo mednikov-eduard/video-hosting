@@ -26,8 +26,8 @@ export function HistoryHelper() {
 	const watchHistory = data?.data;
 
 	return (
-		<section className='max-w-screen-lg'>
-			<div className='mb-10'>
+		<section className='w-full  px-4'>
+			<div className='flex justify-between'>
 				<SectionTitle
 					Icon={History}
 					isPageHeading
@@ -43,7 +43,7 @@ export function HistoryHelper() {
 					{isPending ? 'Clearing...' : 'Clear history'}
 				</button>
 			</div>
-			<div>
+			<div className='max-w-screen-lg'>
 				{isLoading ? (
 					<SkeletonLoader classNames='h-28 mb-6 rounded-md' />
 				) : watchHistory?.length ? (

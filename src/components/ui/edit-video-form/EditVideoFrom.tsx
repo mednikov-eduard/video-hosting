@@ -13,7 +13,6 @@ import { Button } from '../button/Button';
 import { VideoForm } from '../video-form/VideoForm';
 
 import { studioVideoService } from '@/services/studio/studio-video.service';
-import { userService } from '@/services/studio/user.service';
 import type { IVideoFormData } from '@/types/studio-video.types';
 import { SectionTitle } from '../section-title/SectionTitle'
 import { Edit } from 'lucide-react'

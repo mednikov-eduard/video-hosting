@@ -1,12 +1,12 @@
-import type { CreateAxiosDefaults } from 'axios'
-import axios from 'axios'
-import Cookies from 'js-cookie'
+import type { CreateAxiosDefaults } from 'axios';
+import axios from 'axios';
+import Cookies from 'js-cookie';
 
-import { API_URL } from '@/constants/constants'
+import { API_URL } from '@/constants/constants';
 
-import { errorCatch } from './api.helper'
-import { authService } from '@/services/auth.service'
-import { EnumTokens } from '@/types/auth.types'
+import { errorCatch } from './api.helper';
+import { authService } from '@/services/auth.service';
+import { EnumTokens } from '@/types/auth.types';
 
 const options: CreateAxiosDefaults = {
 	baseURL: API_URL,
@@ -14,26 +14,26 @@ const options: CreateAxiosDefaults = {
 		'Content-Type': 'application/json'
 	},
 	withCredentials: true
-}
+};
 
-export const axiosClassic = axios.create(options)
+export const axiosClassic = axios.create(options);
 
-export const instance = axios.create(options)
+export const instance = axios.create(options);
 
 instance.interceptors.request.use(config => {
-	const accessToken = Cookies.get(EnumTokens.ACCESS_TOKEN)
+	const accessToken = Cookies.get(EnumTokens.ACCESS_TOKEN);
 
 	if (config.headers && accessToken) {
-		config.headers.Authorization = `Bearer ${accessToken}`
+		config.headers.Authorization = `Bearer ${accessToken}`;
 	}
 
-	return config
-})
+	return config;
+});
 
 instance.interceptors.response.use(
 	config => config,
 	async error => {
-		const originalRequest = error.config
+		const originalRequest = error.config;
 
 		if (
 			(error?.response?.status === 401 ||
@@ -42,23 +42,22 @@ instance.interceptors.response.use(
 			originalRequest &&
 			!originalRequest._isRetry
 		) {
-			originalRequest._isRetry = true
+			originalRequest._isRetry = true;
 
 			try {
-				await authService.getNewTokens()
-				return instance.request(originalRequest)
+				await authService.getNewTokens();
+				return instance.request(originalRequest);
 			} catch (error: any) {
 				if (
 					errorCatch(error) === 'jwt expired' ||
 					errorCatch(error) === 'Refresh token not passed'
 				) {
-					authService.removeTokenStorage() 
-					throw error
+					authService.removeTokenStorage();
+					return null;
 				}
 			}
 		}
 
-		throw error
+		throw error;
 	}
-)
-
+);

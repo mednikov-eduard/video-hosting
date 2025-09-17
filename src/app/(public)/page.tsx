@@ -13,14 +13,14 @@ import type { IVideo } from '@/types/video.types';
 export const revalidate = 100;
 
 export const metadata: Metadata = {
-	title: 'Youtube 2',
+	title: 'Yourvideo',
 	description: ' Best videos in the world',
 	alternates: {
 		canonical: PAGE.HOME
 	},
 	openGraph: {
 		type: 'website',
-		title: 'Youtube 2',
+		title: 'Yourvideo',
 		url: PAGE.HOME
 	}
 };
@@ -41,6 +41,7 @@ export default async function Page() {
 								key={video.id}
 								video={video}
 								Icon={Flame}
+								isImagePriority
 							/>
 						))}
 					</div>

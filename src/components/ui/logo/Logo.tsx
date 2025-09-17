@@ -19,7 +19,7 @@ export function Logo() {
 				size={29}
 			/>
 			<span className='font-semibold text-xl'>
-				{!!pathname.includes(STUDIO_PAGE.HOME) ? 'STUDIO' : 'Youtube 2.0'}
+				{!!pathname.includes(STUDIO_PAGE.HOME) ? 'STUDIO' : 'YOURVIDEO'}
 			</span>
 		</Link>
 	);

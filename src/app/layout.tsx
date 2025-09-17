@@ -12,8 +12,8 @@ export const fetchCache = 'default-cache';
 
 export const metadata: Metadata = {
 	title: {
-		absolute: 'Youtube',
-		template: '%s | Course project'
+		absolute: 'Yourvideo',
+		template: '%s | Personal project'
 	},
 	description: 'Best app to watch videos',
 	metadataBase: new URL(SITE_URL)

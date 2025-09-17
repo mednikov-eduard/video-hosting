@@ -1,3 +1,5 @@
+'use client';
+
 import dynamic from 'next/dynamic';
 import { usePathname } from 'next/navigation';
 
@@ -33,7 +35,7 @@ export function Sidebar({ toggleSidebar }: { toggleSidebar: () => void }) {
 
 			<SidebarMenu
 				menu={MORE_SIDEBAR_DATA}
-				title='More for youtube'
+				title='More for yourvideo'
 			/>
 			<DynamicLogout />
 		</aside>

@@ -1,3 +1,5 @@
+'use client';
+
 import dynamicNext from 'next/dynamic';
 import Image from 'next/image';
 import Link from 'next/link';

@@ -1,10 +1,11 @@
 import Cookies from 'js-cookie';
 
+import { clearAuthData, setAuthData } from '@/store/reducers/auth.slice';
+
 import { axiosClassic } from '@/api/axios';
 
 import type { IAuthData } from '@/app/auth/auth-form.types';
 import { store } from '@/store';
-import { clearAuthData, setAuthData } from '@/store/reducers/auth.slice';
 import { EnumTokens } from '@/types/auth.types';
 import type { IUser } from '@/types/user.types';
 
@@ -31,26 +32,30 @@ class AuthService {
 	}
 
 	async initializeAuth() {
-		const initialStore = store.getState().auth
-		if (initialStore.user) return
+		const initialStore = store.getState().auth;
+		if (initialStore.user) return;
 
 		try {
-			await this.getNewTokens()
+			await this.getNewTokens();
 		} catch (error) {
-			store.dispatch(clearAuthData())
+			store.dispatch(clearAuthData());
 		}
 	}
 
 	async getNewTokens() {
-		const response = await axiosClassic.post<IAuthResponse>(`${this._auth}/access-token`);
+		try {
+			const response = await axiosClassic.post<IAuthResponse>(`${this._auth}/access-token`);
 
-		if (response.data.accessToken) {
-			this._saveTokenStorage(response.data.accessToken);
+			if (response.data.accessToken) {
+				this._saveTokenStorage(response.data.accessToken);
 
-			store.dispatch(setAuthData(response.data));
+				store.dispatch(setAuthData(response.data));
+			}
+
+			return response;
+		} catch (error) {
+			return null;
 		}
-
-		return response;
 	}
 
 	async logout() {
