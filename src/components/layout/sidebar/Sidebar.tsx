@@ -35,7 +35,7 @@ export function Sidebar({ toggleSidebar }: { toggleSidebar: () => void }) {
 
 			<SidebarMenu
 				menu={MORE_SIDEBAR_DATA}
-				title='More for yourvideo'
+				title='More from yourvideo'
 			/>
 			<DynamicLogout />
 		</aside>

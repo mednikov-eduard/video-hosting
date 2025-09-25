@@ -63,7 +63,7 @@ export function VideoActions({ likesCount, videoId }: Props) {
 		<div className='flex items-center gap-7'>
 			<SaveToPlaylist videoId={videoId} />
 			<button
-				className='flex items-center gap-2 text-primary opacity-80 hover:opacity-100 transition'
+				className='flex items-center gap-2 text-primary hover:opacity-80 transition'
 				onClick={() => mutate()}
 			>
 				<Heart

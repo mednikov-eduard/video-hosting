@@ -3,7 +3,6 @@ import * as m from 'framer-motion/m';
 import { Upload } from 'lucide-react';
 import { useState } from 'react';
 import type { UseFormReset } from 'react-hook-form';
-import toast from 'react-hot-toast';
 
 import { useUpload } from '@/hooks/useUpload';
 
@@ -17,7 +16,7 @@ export function DragAndDropVideo({ reset }: Props) {
 	const { uploadFile, isLoading: isUploading } = useUpload({
 		maxFileSize: 3 * 1024 * 1024 * 1024,
 		folder: 'videos',
-		onSuccess(data) {
+		async onSuccess(data) {
 			const file = data[0];
 			if (!file) return;
 
@@ -27,9 +26,11 @@ export function DragAndDropVideo({ reset }: Props) {
 				title: file.name
 			});
 
+			const { toast } = await import('react-hot-toast');
 			toast.success('File successfully uploaded!');
 		},
-		onError() {
+		async onError() {
+			const { toast } = await import('react-hot-toast');
 			toast.error('Upload has error!');
 		}
 	});

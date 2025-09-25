@@ -50,7 +50,7 @@ export function VideoItem({ video, Icon, isImagePriority }: Props) {
 						width={431}
 						height={364}
 						alt={video.title}
-						className='rounded-md w-full'
+						className='rounded-md'
 						quality={100}
 						priority={isImagePriority}
 					/>

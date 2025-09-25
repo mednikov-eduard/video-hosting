@@ -35,7 +35,7 @@ export default async function Page() {
 			{!!trendingVideos?.length && (
 				<section className='mb-10'>
 					<SectionTitle Icon={Flame}>Trending</SectionTitle>
-					<div className='grid-6-cols'>
+					<div className='grid-4-cols'>
 						{trendingVideos.map((video: IVideo) => (
 							<VideoItem
 								key={video.id}

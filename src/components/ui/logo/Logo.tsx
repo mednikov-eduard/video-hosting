@@ -11,7 +11,7 @@ export function Logo() {
 
 	return (
 		<Link
-			href='/'
+			href={!!pathname.includes(STUDIO_PAGE.HOME) ? '/studio' : '/'}
 			className='inline-flex items-center gap-1.5'
 		>
 			<SquarePlay

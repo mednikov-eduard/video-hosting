@@ -32,7 +32,7 @@ export default async function Page() {
 	return (
 		<section>
 			<SectionTitle Icon={Flame}>Trending</SectionTitle>
-			<div className='grid-6-cols'>
+			<div className='grid-4-cols'>
 				{!!trendingVideos?.length ? (
 					trendingVideos.map((video: IVideo) => (
 						<VideoItem

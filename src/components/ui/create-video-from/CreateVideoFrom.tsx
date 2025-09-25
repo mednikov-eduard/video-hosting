@@ -1,18 +1,11 @@
 import { useMutation } from '@tanstack/react-query';
-import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import type { SubmitHandler } from 'react-hook-form';
-import { Controller, type UseFormReturn } from 'react-hook-form';
-import toast from 'react-hot-toast';
+import { type UseFormReturn } from 'react-hook-form';
 
 import { STUDIO_PAGE } from '@/config/studio-page.config';
 
 import { Button } from '../button/Button';
-import { Field } from '../field/Field';
-import { Textarea } from '../field/Textarea';
-import { TagsField } from '../tags-field/TagsField';
-import { UploadField } from '../upload-field/UploadField';
-import { UploadLoader } from '../upload-loader/UploadLoader';
 import { VideoForm } from '../video-form/VideoForm';
 
 import { studioVideoService } from '@/services/studio/studio-video.service';
@@ -29,12 +22,14 @@ export function CreateVideoFrom({ form, isReadyToPublish }: Props) {
 	const { mutate, isPending } = useMutation({
 		mutationKey: ['create a video'],
 		mutationFn: (data: IVideoFormData) => studioVideoService.create(data),
-		onSuccess: () => {
+		async onSuccess(){
+			const { toast } = await import('react-hot-toast');
 			form.reset();
 			toast.success('Video successfully created!');
 			router.push(STUDIO_PAGE.HOME);
 		},
-		onError() {
+		async onError() {
+			const { toast } = await import('react-hot-toast');
 			toast.error('Video creating has error!');
 		}
 	});
@@ -43,7 +38,7 @@ export function CreateVideoFrom({ form, isReadyToPublish }: Props) {
 		mutate(data);
 	};
 
-return (
+	return (
 		<form onSubmit={form.handleSubmit(onSubmit)}>
 			<VideoForm form={form} />
 			<div className='mt-4 text-right'>

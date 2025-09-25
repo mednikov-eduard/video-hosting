@@ -32,7 +32,7 @@ export default async function Page() {
 	return (
 		<section>
 			<SectionTitle Icon={Gamepad2}>Video games</SectionTitle>
-			<div className='grid-6-cols'>
+			<div className='grid-4-cols'>
 				{!!videoGames?.length ? (
 					videoGames.map((video: IVideo) => (
 						<VideoItem

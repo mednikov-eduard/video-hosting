@@ -1,21 +1,20 @@
 'use client';
 
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { Edit } from 'lucide-react';
 import { useParams, useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 import type { SubmitHandler } from 'react-hook-form';
 import { useForm } from 'react-hook-form';
-import toast from 'react-hot-toast';
 
 import { STUDIO_PAGE } from '@/config/studio-page.config';
 
 import { Button } from '../button/Button';
+import { SectionTitle } from '../section-title/SectionTitle';
 import { VideoForm } from '../video-form/VideoForm';
 
 import { studioVideoService } from '@/services/studio/studio-video.service';
 import type { IVideoFormData } from '@/types/studio-video.types';
-import { SectionTitle } from '../section-title/SectionTitle'
-import { Edit } from 'lucide-react'
 
 export function EditVideoFrom() {
 	const { id } = useParams();
@@ -48,15 +47,17 @@ export function EditVideoFrom() {
 	const { mutate, isPending } = useMutation({
 		mutationKey: ['edit a video'],
 		mutationFn: (data: IVideoFormData) => studioVideoService.update(id as string, data),
-		onSuccess: () => {
+		async onSuccess() {
 			queryClient.invalidateQueries({
 				queryKey: ['studioVideoList']
 			});
 			form.reset();
+			const { toast } = await import('react-hot-toast');
 			toast.success('Video successfully updated!');
 			router.push(STUDIO_PAGE.HOME);
 		},
-		onError() {
+		async onError() {
+			const { toast } = await import('react-hot-toast');
 			toast.error('Video updating has error!');
 		}
 	});
@@ -67,7 +68,12 @@ export function EditVideoFrom() {
 
 	return (
 		<div className='max-w-7xl mx-auto'>
-			<SectionTitle Icon={Edit} isPageHeading>Edit Video</SectionTitle>
+			<SectionTitle
+				Icon={Edit}
+				isPageHeading
+			>
+				Edit Video
+			</SectionTitle>
 			<form onSubmit={form.handleSubmit(onSubmit)}>
 				<VideoForm
 					form={form}

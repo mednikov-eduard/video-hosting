@@ -45,7 +45,7 @@ export function Explore() {
 	const allVideos = data?.pages.flatMap(page => page.videos) || [];
 
 	return (
-		<section className='grid-6-cols pb-5'>
+		<section className='grid-4-cols pb-5'>
 			{isLoading && !allVideos.length ? (
 				<SkeletonLoader
 					count={6}

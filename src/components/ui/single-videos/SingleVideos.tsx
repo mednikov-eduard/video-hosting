@@ -1,5 +1,3 @@
-/* TODO: изменить способ работы режима театра */
-
 'use client';
 
 import cn from 'clsx';
@@ -12,11 +10,12 @@ import { VideoPlayer } from '@/ui/video-player/VideoPlayer';
 
 import { useUpdateViews } from '@/hooks/useUpdateViews';
 
-import { Comments } from '../comments/Comments';
+const DynamicComments = dynamic(() => import('../comments/Comments').then((mod) => mod.Comments))
 import { SimilarVideos } from '../similar-videos/SimilarVideos';
 import { VideoDescription } from '../video-description/VideoDescription';
 
 import type { ISingleVideoResponse } from '@/types/video.types';
+import dynamic from 'next/dynamic'
 
 /* TODO: изменить способ работы режима театра */
 
@@ -71,7 +70,7 @@ export function SingleVideos({ video }: Props) {
 				/>
 				<VideoDescription description={video.description} />
 
-				<Comments video={video} />
+				<DynamicComments video={video} />
 			</div>
 			{!!video.similarVideos?.length && (
 				<div
