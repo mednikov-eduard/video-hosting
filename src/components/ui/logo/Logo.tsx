@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
 import { COLORS } from '@/constants/colors.constants';
+import { SITE_NAME } from '@/constants/constants';
 
 import { STUDIO_PAGE } from '@/config/studio-page.config';
 
@@ -19,7 +20,7 @@ export function Logo() {
 				size={29}
 			/>
 			<span className='font-semibold text-xl'>
-				{!!pathname.includes(STUDIO_PAGE.HOME) ? 'STUDIO' : 'YOURVIDEO'}
+				{!!pathname.includes(STUDIO_PAGE.HOME) ? 'STUDIO' : `${SITE_NAME.toUpperCase()}`}
 			</span>
 		</Link>
 	);

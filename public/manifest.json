@@ -1,0 +1,23 @@
+{
+	"theme_color": "#ef4444",
+	"background_color": "#191B28",
+	"scope": "/",
+	"start_url": "/",
+	"display": "standalone",
+	"orientation": "portrait",
+	"name": "YourVideo",
+	"short_name": "YV",
+	"description": "Best youtube's alternative platform.",
+	"icons": [
+		{
+			"src": "/256.png",
+			"sizes": "256x256",
+			"type": "image/png"
+		},
+		{
+			"src": "/512.png",
+			"sizes": "512x512",
+			"type": "image/png"
+		}
+	]
+}

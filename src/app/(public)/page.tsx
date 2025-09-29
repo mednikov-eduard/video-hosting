@@ -9,18 +9,19 @@ import { PAGE } from '@/config/public-page.config';
 import { ExploreSection } from './explore/ExploreSection';
 import { videoService } from '@/services/video.service';
 import type { IVideo } from '@/types/video.types';
+import { SITE_NAME } from '@/constants/constants'
 
 export const revalidate = 100;
 
 export const metadata: Metadata = {
-	title: 'Yourvideo',
+	title: `${SITE_NAME}`,
 	description: ' Best videos in the world',
 	alternates: {
 		canonical: PAGE.HOME
 	},
 	openGraph: {
 		type: 'website',
-		title: 'Yourvideo',
+		title: `${SITE_NAME}`,
 		url: PAGE.HOME
 	}
 };

@@ -24,6 +24,7 @@ const ForwardedRefRecaptcha = forwardRef<ReCAPTCHA>((props, ref) => (
 		forwardedRef={ref}
 	/>
 ));
+
 export function Auth() {
 	const [isLogin, setIsLogin] = useState(true);
 	const {
